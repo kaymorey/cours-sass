@@ -368,6 +368,7 @@
               </code></pre>
             </div>
           </div>
+          <aside class="notes">Parler des at-rules</aside>
         </section>
         <section>
           <h3 class="header-title">Imbrication</h3>
@@ -684,6 +685,8 @@
           </div>
 
           <p style="font-size: 0.7em;" class="fragment">On peut même compliquer un peu notre mixin pour faire en sorte qu'elle puisse centrer des éléments horizontalement, verticalement <strong>ou</strong> les 2...</p>
+
+          <aside class="notes">Une mixin permet de définir des styles qui vont être réutilisés</aside>
         </section>
         <section>
           <h3 class="header-title">mixin et conditions</h3>
@@ -759,6 +762,26 @@
             <img src="images/oc-extend-mixin.png" alt="">
             <figcaption><small>Le point de vue (assez catégorique) d'OpenClassrooms</small></figcaption>
           </figure>
+
+          <p style="padding-top: 10px;"><small>Un autre point de vue : <a href="https://vanseodesign.com/css/sass-mixin-or-extend/">Sass: When To Use @mixin And When To Use @extend</a></small></p>
+
+          <!-- On peut montrer le code suivant pour montrer 1 qu'on ne peut pas faire un extend dans un @media et 2 que le @extend déplace le sélecteur
+          @mixin color-red {
+              color: red;
+          }
+
+          .red {
+              color: red;
+          }
+
+          .text1 {
+              @include color-red;
+          }
+
+          .text2 {
+              @extend .red;
+          }
+          Règles dupliquées = DRY -->
         </section>
         <section>
           <h3 class="header-title">Boucles</h3>
@@ -812,7 +835,7 @@
           <h3 class="header-title">Fonctions</h3>
 
           <p>
-            <strong>Une fonction se présente comme une mixin sauf qu'elle ne génère pas des lignes de code mais nous retourne une valeur</strong>
+            <strong>Une fonction se présente comme une mixin sauf qu'elle ne génère pas des règles CSS mais nous retourne une valeur</strong>
 
             <div class="fragment">
               <pre><code data-trim>
@@ -1065,7 +1088,7 @@
             </video>
             <div style="width: 65%;">
               <ul style="padding-left: 15px;">
-                <li>Faire une boucle de 6 itérations</li>
+                <li>Faire une boucle de 4 itérations</li>
                 <li>
                   A chaque tour de boucle
                   <ul>
@@ -1095,7 +1118,7 @@
             <pre><code data-trim class="scss">
               @use 'sass:math';
 
-              @for $i from 1 through 6 {
+              @for $i from 1 through 4 {
                 @keyframes stats-item-animation-#{$i} {
                   100% {
                     transform: translate(math.random(21) + 9px, math.random(21) + 9px);
@@ -1127,7 +1150,7 @@
                 @return 1;
               }
               
-              @for $i from 1 through 6 {
+              @for $i from 1 through 4 {
                 @keyframes stats-item-animation-#{$i} {
                   100% {
                     transform: translate((math.random(21) + 9px) * getSign(math.random(2)), (math.random(21) + 9px) * getSign(math.random(2)));
@@ -1294,7 +1317,8 @@
               }
 
               &__btn {
-                  background: blue;
+                background: blue;
+
                 &--light {
                     background: white;
                 }
