@@ -24,7 +24,7 @@
           </div>
           <p style="padding-top: 20px;">
             <small>Katia Moreira</small><br>
-            <small>MMI 2 - <a href="https://www.youtube.com/watch?v=Ff1Rq6mi3Lg" target="_blank">08/03/2022</a> 🦸‍♀️</small><br>
+            <small>MMI 2 - 18/01/2023</small><br>
           </p>
         </section>
         <section>
@@ -33,7 +33,7 @@
             <ul>
               <li>
                 Katia Moreira<br>
-                DUT SRC 2010-2012<br>
+                DUT SRC (MMI) 2010-2012<br>
                 IMAC 2012-2013<br>
                 Gobelins 2013-2015
               </li>
@@ -42,6 +42,19 @@
                 Intégratrice web / développeuse front-end<br> chez <a href="https://happyculture.coop/" target="_blank">Happyculture</a><br>
                 <img src="images/happyculture_logo.png" alt="" width="80">
               </li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h3 class="header-title">Ce qu'on va voir ensemble</h3>
+          <div>
+            <ul>
+              <li>Préprocesseurs CSS</li>
+              <li>Performance front-end</li>
+              <li>Améliorer vos animations</li>
+              <li>Accessibilité JS</li>
+              <li>Qualité web</li>
+              <li>Projets SAÉ</li>
             </ul>
           </div>
         </section>
@@ -102,7 +115,7 @@
         <section>
           <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
 
-          <p>Les préprocesseurs sont eux aujourd'hui indispensables pour améliorer la productivité 🚀 et la maintenabilité 🛠 d'un site.</p>
+          <p>Les préprocesseurs sont eux aujourd'hui largement répandus pour améliorer la productivité 🚀 et la maintenabilité 🛠 d'un site.</p>
         </section>
         <section>
           <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
@@ -234,7 +247,7 @@
                 <strong>Notre terrain de jeu :</strong><br>un portfolio simple en one page
                 <br>
                 <br>
-                <a href="https://we.tl/t-E4ZIISzSDZ">Télécharger le template</a>
+                <a href="https://we.tl/t-P2DOFcAmTo">Télécharger le template</a>
               </p>
             </div>
             <div class="col-6">
@@ -794,7 +807,7 @@
             <pre><code data-trim class="scss">
               // Code SASS
               @for $i from 1 through 3 {
-                ul:nth-child(#{$i}) {
+                li:nth-child(#{$i}) {
                   top: 10px * $i;
                 }
               }
@@ -803,15 +816,15 @@
           <div class="fragment">
             <pre><code data-trim  class="scss">
               /* Code CSS */
-              ul:nth-child(1) {
+              li:nth-child(1) {
                 top: 10px;
               }
 
-              ul:nth-child(2) {
+              li:nth-child(2) {
                 top: 20px;
               }
 
-              ul:nth-child(3) {
+              li:nth-child(3) {
                 top: 30px;
               }
             </code></pre>
@@ -1022,7 +1035,7 @@
           </p>
 
           <ul>
-            <li>Créer une fonction <em>hoverAlternateColor</em> qui prends en paramètre une couleur</li>
+            <li>Créer une fonction <em>hover-alternate-color</em> qui prends en paramètre une couleur</li>
             <li><strong>Si</strong> sa luminosité est inférieure à 25%, retourner une couleur 20% plus claire</li>
             <li><strong>Sinon</strong> retourner une couleur 20% plus sombre</li>
             <li>Montrer un exemple d'utilisation de la fonction</li>
@@ -1045,7 +1058,7 @@
             <pre><code data-trim class="scss">
               @use 'sass:color';
 
-              @function hoverAlternateColor($color) {
+              @function hover-alternate-color($color) {
                 $result: '';
 
                 @if (color.lightness($color) < 25%) {
@@ -1142,8 +1155,8 @@
             <pre><code data-trim class="scss">
               @use 'sass:math';
 
-              @function getSign($randNumber) {
-                @if $randNumber == 1 {
+              @function get-sign($number) {
+                @if $number == 1 {
                   @return -1;
                 }
               
@@ -1153,7 +1166,7 @@
               @for $i from 1 through 4 {
                 @keyframes stats-item-animation-#{$i} {
                   100% {
-                    transform: translate((math.random(21) + 9px) * getSign(math.random(2)), (math.random(21) + 9px) * getSign(math.random(2)));
+                    transform: translate((math.random(21) + 9px) * get-sign(math.random(2)), (math.random(21) + 9px) * get-sign(math.random(2)));
                   }
                 }
               
@@ -1195,7 +1208,12 @@
               <li>Centrage des éléments</li>
               <li>Media queries</li>
             </ul>
-            <p class="fragment"><a href="https://gist.github.com/kaymorey/dc9a40a6b3b476a211f308e2deeebbc7">Mes fichiers de variables et mixins par défaut</a></p>
+            <p class="fragment">
+              📍 <a href="https://gist.github.com/kaymorey/dc9a40a6b3b476a211f308e2deeebbc7">Mes fichiers de variables et mixins par défaut</a>
+            </p>
+            <p class="fragment">
+              📰 <a href="https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2">10 awesome SASS mixins</a>
+            </p>
           </div>
         </section>
         <section>
@@ -1280,6 +1298,9 @@
             <img style="max-width: 100%; max-height: 100%; margin: 0;" src="images/avea-vacances1.jpg" alt="">
             <img class="fragment" style="width: 100%; max-width: 100%; max-height: 100%; margin: 0; position: absolute; top: 0; left: 0;" src="images/avea-vacances2.jpg" alt="">
           </div>
+          <aside class="notes">
+            https://www.avea-vacances.fr/offres?offer_search%5Breference%5D=&sort=
+          </aside>
         </section>
         <section>
           <h3 class="header-title">Introduction à BEM</h3>
@@ -1303,6 +1324,14 @@
             .search-form__btn { }
             .search-form__btn--light { }
           </code></pre>
+        </section>
+        <section>
+          <h3 class="header-title">Introduction à BEM</h3>
+
+          <div>
+            <p><strong>BEM : Block Element Modifier</strong></p>
+            <img src="images/portfolio-bem.png" alt="">
+          </div>
         </section>
         <section>
           <h3 class="header-title">Introduction à BEM</h3>
@@ -1364,14 +1393,26 @@
           </div>
         </section>
         <section data-background-color="rgb(19, 64, 116)">
-          <h2 style="color: #FFF;">Merci pour votre attention 👩‍💻👨‍💻 !<br><br>À la prochaine 👋</h2>
-          <p class="fragment" style="color: #FFF; padding-top: 25px;">
+          <h2 style="padding-top: 20px; color: #FFF; line-height: 1.4em;">Merci pour votre attention 👩‍💻👨‍💻 !<br>À la prochaine 👋</h2>
+          <p style="color: #FFF; padding-top: 25px;">
             Une question ?<br>
-            <a href="https://twitter.com/kaymorey">Twitter @kaymorey</a><br>
-            <a href="https://www.linkedin.com/in/katiamoreira/">Linkedin</a><br>
-            <a href="mailto:bonjour@katiamoreira.fr">bonjour@katiamoreira.fr</a><br><br>
-            <a href="https://cours-sass.vercel.app/">https://cours-sass.vercel.app/</a>
           </p>
+          <ul>
+            <li>
+              🐦
+              <a href="https://twitter.com/kaymorey">Twitter @kaymorey</a>
+            </li>
+            <li>
+              💼
+              <a href="https://www.linkedin.com/in/katiamoreira/">Linkedin</a>
+            </li>
+            <li>
+              📧
+              <a href="mailto:bonjour@katiamoreira.fr">bonjour@katiamoreira.fr</a>
+            </li>
+            </li>
+          </ul>
+          <p style="padding-top: 50px;"><a href="https://cours-sass.vercel.app/">https://cours-sass.vercel.app/</a></p>
         </section>
         <!-- Montrer un exemple de fonction bullshit (genre x2)
         puis introduire les fonctions SASS
