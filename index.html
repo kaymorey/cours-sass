@@ -1051,37 +1051,6 @@
           </ul>
         </section>
         <section>
-          <h3 class="header-title">Exercice 1 🤓</h3>
-
-          <p><strong>Code final</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:color';
-
-              @function hover-alternate-color($color) {
-                $result: '';
-
-                @if (color.lightness($color) < 25%) {
-                  $result: color.scale($color, $lightness: 20%);
-                } @else {
-                  $result: color.scale($color, $lightness: -20%);
-                }
-
-                @return $result;
-              }
-
-              a {
-                color: #000;
-
-                &:hover {
-                  color: hoverAlternateColor(#000);
-                }
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">Montrer qu'on peut l'utiliser sur .skill__value-inset</aside>
-        </section>
-        <section>
           <h3 class="header-title">Exercice 2 🤓</h3>
 
           <p>
@@ -1121,62 +1090,6 @@
                 </div>
               </ul>
             </div>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
-
-          <p><strong>Code final</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:math';
-
-              @for $i from 1 through 4 {
-                @keyframes stats-item-animation-#{$i} {
-                  100% {
-                    transform: translate(math.random(21) + 9px, math.random(21) + 9px);
-                  }
-                }
-              
-                .stats-item:nth-child(#{$i}) {
-                  animation: stats-item-animation-#{$i} 2.6s infinite;
-                  animation-delay: $i * 0.2s;
-                  animation-direction: alternate;
-                }
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
-
-          <p><strong>Si on va un peu plus loin...</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:math';
-
-              @function get-sign($number) {
-                @if $number == 1 {
-                  @return -1;
-                }
-              
-                @return 1;
-              }
-              
-              @for $i from 1 through 4 {
-                @keyframes stats-item-animation-#{$i} {
-                  100% {
-                    transform: translate((math.random(21) + 9px) * get-sign(math.random(2)), (math.random(21) + 9px) * get-sign(math.random(2)));
-                  }
-                }
-              
-                .stats-item:nth-child(#{$i}) {
-                  animation: stats-item-animation-#{$i} 2.6s infinite;
-                  animation-delay: $i * 0.2s;
-                  animation-direction: alternate;
-                }
-              }
-            </code></pre>
           </div>
         </section>
         <section data-background-color="rgb(19, 64, 116)">
