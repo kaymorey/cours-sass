@@ -27,6 +27,11 @@
             <small>MMI 2 - 18/01/2023</small><br>
           </p>
         </section>
+        <section class="full">
+          <div class="centered">
+            <a href="https://kaymorey.github.io/cours-sass/">https://kaymorey.github.io/cours-sass/</a>
+          </div>
+        </section>
         <section>
           <h3 class="header-title">Présentation</h3>
           <div>
@@ -1051,6 +1056,37 @@
           </ul>
         </section>
         <section>
+          <h3 class="header-title">Exercice 1 🤓</h3>
+
+          <p><strong>Code final</strong></p>
+          <div style="font-size: 0.78em;">
+            <pre><code data-trim class="scss">
+              @use 'sass:color';
+
+              @function hover-alternate-color($color) {
+                $result: '';
+
+                @if (color.lightness($color) < 25%) {
+                  $result: color.scale($color, $lightness: 20%);
+                } @else {
+                  $result: color.scale($color, $lightness: -20%);
+                }
+
+                @return $result;
+              }
+
+              a {
+                color: #000;
+
+                &:hover {
+                  color: hoverAlternateColor(#000);
+                }
+              }
+            </code></pre>
+          </div>
+          <aside class="notes">Montrer qu'on peut l'utiliser sur .skill__value-inset</aside>
+        </section>
+        <section>
           <h3 class="header-title">Exercice 2 🤓</h3>
 
           <p>
@@ -1092,6 +1128,62 @@
             </div>
           </div>
         </section>
+        <section>
+          <h3 class="header-title">Exercice 2 🤓</h3>
+
+          <p><strong>Code final</strong></p>
+          <div style="font-size: 0.78em;">
+            <pre><code data-trim class="scss">
+              @use 'sass:math';
+
+              @for $i from 1 through 4 {
+                @keyframes stats-item-animation-#{$i} {
+                  100% {
+                    transform: translate(math.random(21) + 9px, math.random(21) + 9px);
+                  }
+                }
+              
+                .stats-item:nth-child(#{$i}) {
+                  animation: stats-item-animation-#{$i} 2.6s infinite;
+                  animation-delay: $i * 0.2s;
+                  animation-direction: alternate;
+                }
+              }
+            </code></pre>
+          </div>
+        </section>
+        <section>
+          <h3 class="header-title">Exercice 2 🤓</h3>
+
+          <p><strong>Si on va un peu plus loin...</strong></p>
+          <div style="font-size: 0.78em;">
+            <pre><code data-trim class="scss">
+              @use 'sass:math';
+
+              @function get-sign($number) {
+                @if $number == 1 {
+                  @return -1;
+                }
+              
+                @return 1;
+              }
+              
+              @for $i from 1 through 4 {
+                @keyframes stats-item-animation-#{$i} {
+                  100% {
+                    transform: translate((math.random(21) + 9px) * get-sign(math.random(2)), (math.random(21) + 9px) * get-sign(math.random(2)));
+                  }
+                }
+              
+                .stats-item:nth-child(#{$i}) {
+                  animation: stats-item-animation-#{$i} 2.6s infinite;
+                  animation-delay: $i * 0.2s;
+                  animation-direction: alternate;
+                }
+              }
+            </code></pre>
+          </div>
+        </section>
         <section data-background-color="rgb(19, 64, 116)">
           <h2 style="color: #FFF;">3. Bonnes pratiques</h2>
         </section>
@@ -1121,10 +1213,9 @@
               <li>Centrage des éléments</li>
               <li>Media queries</li>
             </ul>
-            <p class="fragment">
+            <p class="fragment" style="line-height: 1.5em;">
               📍 <a href="https://gist.github.com/kaymorey/dc9a40a6b3b476a211f308e2deeebbc7">Mes fichiers de variables et mixins par défaut</a>
-            </p>
-            <p class="fragment">
+              <br>
               📰 <a href="https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2">10 awesome SASS mixins</a>
             </p>
           </div>
@@ -1267,6 +1358,42 @@
               }
             }
           </code></pre>
+        </section>
+        <section>
+          <h3 class="header-title">Mise en pratique... des bonnes pratiques !</h3>
+
+          <div>
+            <p><strong>OOCSS et BEM</strong></p>
+          </div>
+          <div class="d-flex" style="align-items: center;">
+            <div class="col-6">
+              <p><small>A partir de la maquette suivante (cliquer pour la voir en grand) :</small></p>
+              <a href="images/booki.png" target="_blank"><img src="images/booki.png" alt="" width="280"></a>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Quels <strong>composants réutilisables</strong> pourriez-vous créer ?</li>
+                <li>Créez le HTML du bloc <strong>"hébergements à Marseille"</strong> en respectant la <strong>nomenclature BEM et OOCSS</strong> pour le nom des classes</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3 class="header-title">Mise en pratique... des bonnes pratiques !</h3>
+
+          <div>
+            <p><strong>OOCSS et BEM</strong></p>
+          </div>
+          <div class="d-flex" style="align-items: center;">
+            <div class="col-6">
+              <a href="images/booki.png" target="_blank"><img src="images/booki.png" alt="" width="280"></a>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Composants : card, filter, stars, grey-section...</li>
+              </ul>
+            </div>
+          </div>
         </section>
         <section>
           <h3 class="header-title">Compiler son SASS... et plus !</h3>
