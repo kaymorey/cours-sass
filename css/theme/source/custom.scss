@@ -15,6 +15,7 @@ $backgroundColor: #FFF;
 
 $mainColor: #134074;
 $headingColor: #134074;
+$secondaryColor: #da6259;
 
 $mainFont: 'Poppins', Helvetica, sans-serif;
 $mainFontSize: 37px;
@@ -27,7 +28,7 @@ $heading2Size: 1.4em;
 $heading3Size: 1em;
 $heading4Size: 0.7em;
 
-$linkColor: #da6259;
+$linkColor: $secondaryColor;
 $linkColorHover: darken( $linkColor, 10% );
 
 // Theme template ------------------------------
@@ -95,6 +96,11 @@ $linkColorHover: darken( $linkColor, 10% );
   &.full {
     top: 0; right: 0; bottom: 0; left: 0;
   }
+}
+
+// Text style ------------------------------
+.text-secondary {
+  color: $secondaryColor;
 }
 
 // Other ------------------------------

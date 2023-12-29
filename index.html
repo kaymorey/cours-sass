@@ -1,1481 +1,1456 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <title>Préprocesseurs CSS</title>
-
-    <link rel="stylesheet" href="dist/reset.css">
-    <link rel="stylesheet" href="dist/reveal.css">
-    <link rel="stylesheet" href="dist/theme/custom.css" id="theme">
-
-    <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/an-old-hope.css" id="highlight-theme">
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides">
-         <section data-background-color="rgb(19, 64, 116)" style="color: #FFF;">
-          <div style="padding-top: 1em; padding-bottom: 1em;">
-            <h1 style="color: #FFF;">Les préprocesseurs CSS</h1>
-            <h4 style="color: #FFF;">(et pourquoi c'est génial)</h4>
-            <img src="images/pale-enjoying-remote-work.png" alt="" width="300">
-          </div>
-          <p style="padding-top: 20px;">
-            <small>Katia Moreira</small><br>
-            <small>MMI 2 - 18/01/2023</small><br>
-          </p>
-        </section>
-        <section class="full">
-          <div class="centered">
-            <a href="https://kaymorey.github.io/cours-sass/">https://kaymorey.github.io/cours-sass/</a>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Présentation</h3>
-          <div>
-            <ul>
-              <li>
-                Katia Moreira<br>
-                DUT SRC (MMI) 2010-2012<br>
-                IMAC 2012-2013<br>
-                Gobelins 2013-2015
-              </li>
-              <li>From 👩‍🎓 to 👩‍🏫</li>
-              <li>
-                Intégratrice web / développeuse front-end<br> chez <a href="https://happyculture.coop/" target="_blank">Happyculture</a><br>
-                <img src="images/happyculture_logo.png" alt="" width="80">
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Ce qu'on va voir ensemble</h3>
-          <div>
-            <ul>
-              <li>Préprocesseurs CSS</li>
-              <li>Performance front-end</li>
-              <li>Améliorer vos animations</li>
-              <li>Accessibilité JS</li>
-              <li>Qualité web</li>
-              <li>Projets SAÉ</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Plan du cours</h3>
-
-          <ol>
-            <li>📋 Introduction aux préprocesseurs</li>
-            <li>🔎 Revue des fonctionnalités du préprocesseur SASS</li>
-            <li>👌 Bonnes pratiques</li>
-          </ol>
-        </section>
-        <section data-background-color="rgb(19, 64, 116)">
-          <h2 class="slide-title" style="color: #FFF;">1. Introduction aux préprocesseurs</h2>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <div>
-            <ul>
-              <li>Outil permettant d'ajouter des fonctionnalités à CSS</li>
-              <li style="position: relative;">Code d'entrée &#8594; 🤖 &#8594; Code de sortie<span class="fragment" style="position: absolute; top: calc(100% + 10px); right: 0; width: 300px; font-weight: 700;"> ↪️ code intelligible pour le navigateur</span></li>
-            </ul>
-          </div>
-          <aside class="notes">
-            C'est un outil qui permet d'ajouter des fonctionnalités à CSS
-            On écrit notre code dans la syntaxe du préprocesseur (un peu du CSS amélioré) et ce code est compilé en code CSS
-            Code d'entrée -> code de sortie
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <div>
-            <ul>
-              <li><strong>pré</strong>processeurs / <strong>post</strong>processeurs</li>
-              <li>
-                <strong>pré</strong>processeur :<br>
-                Langage du préprocesseur (.scss, .sass, .less...) &#8594; 🤖 &#8594; .css
-              </li>
-              <li>
-                <strong>post</strong>processeur :<br>
-                .css &#8594; 🤖 &#8594; .css
-              </li>
-            </ul>
-          </div>
-          <aside class="notes">
-            Il existe également des postprocesseur.<br>
-            Comme son nom l'indique il va agir après.<br>
-            On écrit son code en CSS et le postprocesseur repasse derrière. (par exemple pour ajouter automatiquement des préfixes)
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <p>Les postprocesseurs sont toujours utilisés mais souvent inclus au sein de tâches automatisées (on verra ça la prochaine fois...)</p>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <p>Les préprocesseurs sont eux aujourd'hui largement répandus pour améliorer la productivité 🚀 et la maintenabilité 🛠 d'un site.</p>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <div>
-            <img src="images/less-logo.png" alt="less" width="200" style="margin: 1em;">
-            <img src="images/stylus-logo.svg" alt="stylus" width="200" style="margin: 1em;">
-            <img src="images/sass-logo.svg" alt="sass" width="200" style="margin: 1em;">
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
-
-          <div>
-            <img src="images/sass-logo.svg" alt="sass" width="200" style="margin: 1em;"><br>
-            <p>Préprocesseur le plus répandu 🥇</p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les différentes syntaxes de SASS</h3>
-
-          <div class="fragment">
-            <p>SASS : nom de l'<strong>outil</strong> qui possède 2 syntaxes :</p>
-            <ul>
-              <li>.scss et .sass</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les différentes syntaxes de SASS</h3>
-
-          <div>
-            <p>La syntaxe SASS est plus éloignée de la syntaxe originelle CSS</p>
-            <ul class="is-block">
-              <li>
-                En SASS (fichier .sass)<br>
-                <pre><code data-trim>
-                .error
-                  border: solid #FF0000 1px;
-                  color: #FF0000;
-                </code></pre>
-              </li>
-              <li>
-                En SCSS (fichier .scss)<br>
-                <pre><code class="css" data-trim>
-                .error {
-                  border: solid #FF0000 1px;
-                  color: #FF0000;
-                }
-                </code></pre>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les différentes syntaxes de SASS</h3>
-
-          <div>
-            <p class="is-transparent">La syntaxe SASS est plus éloignée de la syntaxe originelle CSS</p>
-            <ul class="is-block">
-              <li class="is-transparent">
-                En SASS (fichier .sass)<br>
-                <pre><code data-trim>
-                .error
-                  border: solid #FF0000 1px;
-                  color: #FF0000;
-                </code></pre>
-              </li>
-              <li>
-                En SCSS (fichier .scss) ✅<br>
-                <pre><code class="css" data-trim>
-                .error {
-                  border: solid #FF0000 1px;
-                  color: #FF0000;
-                }
-                </code></pre>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Mais finalement SASS à quoi ça sert ? 🤔</h3>
-
-          <ul>
-            <li>Faire du nesting</li>
-            <li>Utiliser des conditions if/else</li>
-            <li>Faire des boucles</li>
-            <li>Utiliser des variables</li>
-            <li>Importer des fichiers</li>
-          </ul>
-          <p class="fragment">&#8594; utiliser les fonctionnalités d'un langage de programmation en CSS 👍</p>
-        </section>
-        <section>
-          <h3 class="header-title">Comment ça marche ?</h3>
-
-          <p style="font-size: 0.7em;">Le compilateur transforme le code SCSS en CSS. On peut utiliser :</p>
-
-          <ul style="font-size: 0.7em;">
-            <li>une application graphique<br><small>Prepros, Codekit, Koala, Scout...</small></li>
-            <li>Un plugin présent dans notre éditeur de code <br><small>Sass autocompile (Atom), Sass Sublime (Sublime Text), Live Sass Compiler (VSCode)</small></li>
-            <li>Un taskrunner ou module bundler<br><small>gulp, grunt, webpack...</small></li>
-            <li>Un outil en ligne<br><small>Sassmeister</small></li>
-            <li>La ligne de commande</li>
-          </ul>
-        </section>
-        <section class="full" data-background-color="rgb(19, 64, 116)">
-          <div class="centered">
-            <h2 class="slide-title" style="color: #FFF;">Place à la pratique ! 🎉</h2>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Place à la pratique ! 🎉</h3>
-
-          <ul>
-           <li>Installer SASS : <a href="https://sass-lang.com/">https://sass-lang.com/</a></li>
-          </ul>
-          <aside class="notes">
-            npm install -g sass
-            sass --version
-          </aside>
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Place à la pratique ! 🎉</h3>
-
-          <div class="d-flex">
-            <div class="col-6">
-              <p>
-                <strong>Notre terrain de jeu :</strong><br>un portfolio simple en one page
-                <br>
-                <br>
-                <a href="https://we.tl/t-P2DOFcAmTo">Télécharger le template</a>
-              </p>
-            </div>
-            <div class="col-6">
-              <img src="images/capture-portfolio.png" alt="" width="300">
-            </div>
-          </div>
-          <aside class="notes">
-            Renommer le fichier .css en .scss pour commencer à utiliser sass
-            lancer ensuite la commande sass --watch style.css style.scss
-          </aside>
-        </section>
-        <section data-background-color="rgb(19, 64, 116)">
-          <h2 style="color: #FFF;">2. Fonctionnalités de SASS</h2>
-        </section>
-        <section>
-          <h3 class="header-title">Variables</h3>
-          <p>$variable: &lt;value&gt;</p>
-
-          <div class="fragment">
-            <pre><code data-trim>
-              $main-color: #72958A;
-              $secondary-color: #C88F9F;
-              $sans-serif-family: 'Poppins', Arial, sans-serif;
-              $container-width: 1280px;
-            </code></pre>
-
-            <p class="fragment">On peut y stocker un nombre, une string, une couleur ou même une déclaration CSS en entier 🎉</p>
-          </div>
-        </section>
-        <section class="light">
-          <h3 class="header-title">Variables</h3>
-          <p><strong>Différences entre les variables CSS et SASS</strong></p>
-
-          <div>
-            <pre><code data-trim>
-              :root {
-                --main-color: #FFD73E;
-              }
-
-              .title {
-                color: var(--main-color);
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section >
-          <h3 class="header-title">Variables</h3>
-          <p><strong>Différences entre les variables CSS et SASS</strong></p>
-
-          <ul>
-            <li>Les variables SASS sont compilées et ne sont pas visibles dans le code final. Les variables CSS sont directement interprétées par le navigateur</li>
-            <li>On peut faire varier la valeur des variables CSS</li>
-            <li>On peut y accéder depuis le JS</li>
-          </ul>
-          <p class="fragment">💡 En savoir plus : <a href="https://css-tricks.com/difference-between-types-of-css-variables/">https://css-tricks.com/difference-between-types-of-css-variables/</a></p>
-          <aside class="notes">
-            Je peux modifier une variable SASS en cours de route. Les éléments suivants utiliserons la nouvelle valeur<br>
-            mais les éléments précédents eux utiliseront toujours l'ancienne valeur. (aller sur sassmeister)
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Variables</h3>
-          <p><strong>Différences entre les variables CSS et SASS</strong></p>
-
-          <div>
-            <pre><code data-trim>
-              :root {
-                --container-width: 1280px;
-              }
-              
-              @media all and (min-width: 1500px) {
-                :root {
-                  --container-width: 1360px;
-                }
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">
-            Je peux par exemple facilement redéfinir la largeur de mon conteneur en fonction de la largeur de l'écran
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Variables</h3>
-          <p><strong>Interpolation de variables</strong></p>
-
-          <div>
-            <pre><code data-trim class="scss">
-              .icon-#{$name} {
-                ...
-              }
-              // ---
-              $sidebar-width: 250px;
-
-              .main {
-                width: calc(100% - #{$sidebar-width});
-              }
-              // ---
-              $property: 'radius';
-              $value: 4px;
-
-              .block {
-                border-#{$property}: $value;
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">
-            Interpolation = remplacer une variable par sa valeur<br>
-            Dans les fonctions CSS (calc, url)<br>
-            Les pseudo class (:nth-child())<br>
-            Dans un sélecteur
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">@import</h3>
-          <div class="fragment">
-            <p><strong>Séparer notre code en plusieurs fichiers .scss</strong></p>
-
-            <div>
-              <pre><code data-trim class="scss">
-                @import '_variables.scss';
-                @import '_reset.scss';
-                @import '_fonts.scss';
-                @import '_layout.scss';
-                @import '_header.scss';
-                @import '_menu.scss';
-                @import '_hero.scss';
-                @import '_stats.scss';
-                @import '_projects.scss';
-                @import '_skills.scss';
-                @import '_contact.scss';
-              </code></pre>
-            </div>
-          </div>
-          <aside class="notes">Parler des at-rules</aside>
-        </section>
-        <section>
-          <h3 class="header-title">Imbrication</h3>
-
-          <div>
-            <pre><code data-trim class="scss">
-              // Code SASS
-              .site-header {
-                nav {
-                  ul {
-                    li {
-
-                    }
-                  }
-                }
-              }
-            </code></pre>
-            <pre><code data-trim class="css">
-              /* Rendu CSS */
-              .site-header nav ul li {
-                ...
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">
-            Exemple avec le fichier hero.scss (strong dans hero__title)
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Imbrication</h3>
-
-          <div>
-            <pre><code data-trim class="scss">
-              // Code SASS
-              .site-header {
-                nav {
-                  @media screen and (min-width: 768px) {
-                    display: block;
-                  }
-                }
-              }
-            </code></pre>
-            <pre><code data-trim class="css">
-              /* Rendu CSS */
-              @media screen and (min-width: 768px) {
-                .site-header nav {
-                  display: block;
-                }
-              }
-            </code></pre>
-          </div>
-
-          <p class="fragment">Mais c'est génial ! 😃<br>
-          <span class="fragment">parfois...<span class="fragment">non 💩</span></span></p>
-          <aside class="notes">
-            Montrer à quel endroit dans notre code on pourrait l'utiliser (fichier hero.scss par exemple avec l'élément hero__title)
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Imbrication</h3>
-
-          <p>L'imbrication c'est cool MAIS on n'en abuse pas 🙅‍♀️</p>
-          <p>➡️ pas plus de 3 niveaux d'imbrication</p>
-          <aside class="notes">
-            Montrer site-header nav ul li a sur sassmeister
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Commentaires</h3>
-          <div>
-            <pre><code data-trim class="scss">
-              // Ce commentaire ne sera pas visible dans notre code CSS final.
-
-              /* Celui-ci en revanche oui. */
-            </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Sélecteur &</h3>
-
-          <div>
-            <pre><code data-trim>
-              .menu__item {
-                a {
-                  &::after {
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    height: 4px;
-                  }
-
-                  &.is-active::after,
-                  &:hover::after {
-                    background-color: $secondary-color;
-                  }
-                }
-              }
-            </code></pre>
-          </div>
-
-          <p class="fragment">"Reprend" le sélecteur parent</p>
-        </section>
-         <section>
-          <h3 class="header-title">Sélecteur &</h3>
-
-          <div>
-            <pre><code data-trim class="scss">
-              // Code SASS
-              .menu__item {
-                a {
-                  &::after {
-                    ...
-                  }
-                }
-              }
-            </code></pre>
-            <pre><code data-trim class="css">
-              /* Code CSS */
-              .menu__item a::after {
-                ...
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section class="light">
-          <h3 class="header-title">Sélecteur &</h3>
-
-          <div>
-            <pre><code data-trim class="scss">
-              // Code SASS
-              a {
-                color: #000;
-
-                .blue-section & {
-                  color: #0000FF;
-                }
-              }
-            </code></pre>
-
-            <pre><code data-trim class="css">
-              /* Code CSS */
-              a {
-                color: #000;
-              }
-
-              .blue-section a {
-                color: #0000FF;
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">@extend et %placeholder</h3>
-
-          <p style="font-size: 0.7em;"><strong>Permet à un sélecteur d'hériter des styles d'un autre</strong></p>
-
-          <div class="fragment" style="font-size: 0.7em;">
-            <pre><code data-trim>
-              // Code SASS
-              .notif {
-                position: fixed;
-                top: 0; left: 0;
-                width: 100%;
-                padding: 15px 0;
-                background-color:#8FCDFF;
-                color: #004074;
-              }
-
-              .notif-error {
-                @extend .notif;
-                background-color: #FFB4B4;
-                color: #740000;
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">@extend et %placeholder</h3>
-
-          <p style="font-size: 0.7em;"><strong>Permet à un sélecteur d'hériter des styles d'un autre</strong></p>
-
-          <div style="font-size: 0.7em;">
-            <pre><code data-trim class="css">
-              /* Code CSS */
-              .notif, .notif-error {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding: 15px 0;
-                background-color: #8FCDFF;
-                color: #004074;
-              }
-              
-              .notif-error {
-                background-color: #FFB4B4;
-                color: #740000;
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">
-            Expliquer, sans trop insister, que notif-error est ajouté à chaque endroit où notif apparait
-          </aside>
-        </section>
-        <section class="light">
-          <h3 class="header-title">@extend et %placeholder</h3>
-
-          <p style="font-size: 0.7em;"><strong>%placeholder</strong></p>
-
-          <div class="fragment" style="font-size: 0.7em;">
-            <pre><code data-trim>
-              // Code SASS
-              %notif {
-                position: fixed;
-                top: 0; left: 0;
-                width: 100%;
-                padding: 15px 0;
-                text-align: center;
-              }
-              
-              .notif-error {
-                @extend %notif;
-                background-color: #FFB4B4;
-                color: #740000;
-              }
-              
-              .notif-info {
-                @extend %notif;
-                background-color:#8FCDFF;
-                color: #004074;
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section class="light">
-          <h3 class="header-title">@extend et %placeholder</h3>
-
-          <p style="font-size: 0.7em;"><strong>%placeholder</strong></p>
-
-          <div class="fragment" style="font-size: 0.7em;">
-            <pre><code data-trim class="css">
-              /* Code CSS */
-              .notif-info, .notif-error {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding: 15px 0;
-                text-align: center;
-              }
-              
-              .notif-error {
-                background-color: #FFB4B4;
-                color: #740000;
-              }
-              
-              .notif-info {
-                background-color: #8FCDFF;
-                color: #004074;
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">@extend et %placeholder</h3>
-
-          <p><strong>Ce qu'il faut retenir ✍</strong></p>
-          <ul>
-            <li>Avec @extend on hérite des styles d'un sélecteur CSS</li>
-            <li>Avec un %placeholder c'est la même chose sauf que le code de la classe étendue n'est pas visible dans le CSS final (et donc pas utilisable dans le HTML)</li>
-          </ul>
-        </section>
-        <section>
-          <h3 class="header-title">mixin et conditions</h3>
-
-          <p>
-            <strong>Pour centrer un élément on utilise fréquemment le code suivant :</strong><br>
-          </p>
-
-          <div class="fragment">
-            <pre><code data-trim>
-              .stats-item {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-            </code></pre>
-          </div>
-
-          <p style="font-size: 0.7em;" class="fragment">Si on centre un élément de la même façon, ailleurs dans notre site, on va devoir répéter ces 3 lignes de code à chaque fois 😕</p>
-        </section>
-        <section>
-          <h3 class="header-title">mixin et conditions</h3>
-
-          <p>
-            <strong>La mixin est là pour ça 🙌</strong><br>
-          </p>
-
-          <div class="fragment">
-            <pre><code data-trim class="scss">
-              @mixin center-flex {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-            </code></pre>
-          </div>
-
-          <div class="fragment">
-            <pre><code data-trim class="scss">
-              .stats-item {
-                @include center-flex;
-              }
-            </code></pre>
-          </div>
-
-          <p style="font-size: 0.7em;" class="fragment">On peut même compliquer un peu notre mixin pour faire en sorte qu'elle puisse centrer des éléments horizontalement, verticalement <strong>ou</strong> les 2...</p>
-
-          <aside class="notes">Une mixin permet de définir des styles qui vont être réutilisés</aside>
-        </section>
-        <section>
-          <h3 class="header-title">mixin et conditions</h3>
-
-          <p style="font-size: 0.8em;">
-            <strong>On va utiliser les arguments et les conditions <br>(attention ça se complique un peu) 😉</strong><br>
-          </p>
-
-          <div class="fragment" class="scss">
-            <pre><code data-trim>
-              @mixin center-flex($type: null){
-                display: flex;
-
-                @if $type == 'x' {
-                  justify-content: center;
-                } @else if $type == 'y' {
-                  align-items: center;
-                } @else {
-                  align-items: center;
-                  justify-content: center;
-                }
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Mixins</h3>
-
-          <p><strong>Ce qu'il faut retenir ✍</strong></p>
-          <pre><code data-trim class="scss">
-            // Déclarer une mixin avec la at-rule @mixin
-            @mixin ma-mixin {
-              ...
-            }
-
-            // L'utiliser avec la at-rule @include
-            .selecteur {
-              @include ma-mixin;
-            }
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Conditions</h3>
-
-          <p><strong>Ce qu'il faut retenir ✍</strong></p>
-          <pre><code data-trim class="scss">
-           @if ...
-           @else if ...
-           @else ...
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Mixins et @extend</h3>
-
-          <p>⚠️ On peut parfois faire la même chose avec une mixin ou une règle @extend, mais le code produit n'est pas le même.</p>
-          <p class="fragment">Mixin duplique <strong>un ensemble de règles</strong> alors que @extend duplique le <strong>sélecteur</strong>.</p>
-          <aside class="notes">Montrer un exemple concret sur sassmeister</aside>
-        </section>
-        <section>
-          <h3 class="header-title">Mixins et @extend</h3>
-
-          <p><strong>Comment savoir si on doit utiliser une mixin ou une règle @extend ? 🤔</strong></p>
-          <p class="fragment">Vous avez besoin d'utiliser un ou des argument(s) ? ➡️ mixin</p>
-          <p class="fragment">mis à part ça... il n'y a pas de règle 🤷‍♀️</p>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/theme/custom.css">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/styles/stackoverflow-light.css" id="highlight-theme">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-background-color="rgb(19, 64, 116)" style="color: #FFF;">
+                    <div style="padding-top: 1em; padding-bottom: 1em;">
+                      <h1 style="color: #FFF;">Les préprocesseurs CSS</h1>
+                      <h4 style="color: #FFF;">(et pourquoi c'est génial)</h4>
+                      <img src="images/pale-enjoying-remote-work.png" alt="" width="300">
+                    </div>
+                    <p style="padding-top: 20px;">
+                      <small>Katia Moreira</small><br>
+                      <small>MMI 2 - xx/xx/2024</small><br>
+                    </p>
+                </section>
+                <section class="full">
+                    <div class="centered">
+                        <div>
+                            <img src="images/download.gif" alt="" width="300"><br>
+                            👉&nbsp;<a href="#">Lien vers le cours en ligne</a>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Présentation</h3>
+                    <div>
+                        <ul>
+                            <li>
+                                Katia Moreira<br>
+                                DUT SRC (MMI) 2010-2012<br>
+                                IMAC 2012-2013<br>
+                                Gobelins 2013-2015
+                            </li>
+                            <li>From 👩‍🎓 to 👩‍🏫</li>
+                            <li>
+                                Intégratrice web / développeuse front-end<br> chez <a href="https://jolicode.com/" target="_blank">jolicode</a><br>
+                                <img src="images/logo-jolicode.svg" alt="" width="180">
+                            </li>
+                            <li>
+                                mentor OpenClassrooms<br>
+                                <img src="images/oc-logo-large.svg" alt="" width="220">
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Ce qu'on va voir ensemble</h3>
+                    <div>
+                        <ul>
+                            <li>Préprocesseurs CSS</li>
+                            <li>Module bundler</li>
+                            <li>Performance front-end</li>
+                            <li>Améliorer vos animations</li>
+                            <li>JavaScript orienté objet</li>
+                            <li>Projets SAÉ</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Préprocesseurs CSS &bullet; Plan du cours</h3>
           
-        </section>
-        <section>
-          <h3 class="header-title">Mixins et @extend</h3>
-          <img src="images/oc-logo.png" alt="" style="width: 50px; margin: 0;">
-          <p><em>“ La différence principale entre les mixins et les extensions est qu’avec les mixins vous obtenez des règles dupliquées, alors qu’avec les extensions, vous obtenez des sélecteurs dupliqués. ”</em></p>
+                    <ol>
+                        <li>📋 Introduction aux préprocesseurs</li>
+                        <li>🔎 Revue des fonctionnalités du préprocesseur SASS</li>
+                        <li>👌 Bonnes pratiques</li>
+                    </ol>
+                </section>
+                <section data-background-color="rgb(19, 64, 116)">
+                    <h2 class="slide-title" style="color: #FFF;">1. Introduction aux préprocesseurs</h2>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <div>
+                        <ul>
+                            <li>Outil permettant d'ajouter des fonctionnalités à CSS</li>
+                            <li style="position: relative;">Code d'entrée &#8594; 🤖 &#8594; Code de sortie<span class="fragment" style="position: absolute; top: calc(100% + 10px); right: 0; width: 300px; font-weight: 700;"> ↪️ code intelligible pour le navigateur</span></li>
+                        </ul>
+                    </div>
+                    <aside class="notes">
+                        C'est un outil qui permet d'ajouter des fonctionnalités à CSS
+                        On écrit notre code dans la syntaxe du préprocesseur (un peu du CSS amélioré) et ce code est compilé en code CSS
+                        Code d'entrée -> code de sortie
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <div>
+                        <ul>
+                            <li><strong>pré</strong>processeurs / <strong>post</strong>processeurs</li>
+                            <li>
+                                <strong>pré</strong>processeur :<br>
+                                Langage du préprocesseur (.scss, .sass, .less...) &#8594; 🤖 &#8594; .css
+                            </li>
+                            <li>
+                                <strong>post</strong>processeur :<br>
+                                .css &#8594; 🤖 &#8594; .css
+                            </li>
+                        </ul>
+                    </div>
+                    <aside class="notes">
+                        Il existe également des postprocesseur.<br>
+                        Comme son nom l'indique il va agir après.<br>
+                        On écrit son code en CSS et le postprocesseur repasse derrière. (par exemple pour ajouter automatiquement des préfixes)
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <p>Les postprocesseurs sont également intéressants et peuvent d'ailleurs presque remplacer les préprocesseurs <br>(on verra ça la prochaine fois...)</p>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <p>Pour autant les préprocesseurs restent largement utilisés pour améliorer la <strong>productivité</strong> 🚀 et la <strong>maintenabilité</strong> 🛠 d'un site.</p>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <div>
+                      <img src="images/less-logo.png" alt="less" width="200" style="margin: 1em;">
+                      <img src="images/stylus-logo.svg" alt="stylus" width="200" style="margin: 1em;">
+                      <img src="images/sass-logo.svg" alt="sass" width="200" style="margin: 1em;">
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Un préprocesseur c'est quoi ?</h3>
+          
+                    <div>
+                        <img src="images/sass-logo.svg" alt="sass" width="200" style="margin: 1em;"><br>
+                        <p>Préprocesseur le plus répandu 🥇</p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Les différentes syntaxes de SASS</h3>
+          
+                    <div class="fragment">
+                        <p>SASS : nom de l'<strong>outil</strong> qui possède 2 syntaxes :</p>
+                        <ul>
+                            <li>.scss et .sass</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Les différentes syntaxes de SASS</h3>
+          
+                    <div>
+                        <p>La syntaxe SASS est plus éloignée de la syntaxe originelle CSS</p>
+                        <ul class="is-block">
+                            <li>
+                                En SASS (fichier .sass)<br>
+                                <pre><code data-trim>
+                                .error
+                                    border: solid #FF0000 1px;
+                                    color: #FF0000;
+                                </code></pre>
+                            </li>
+                            <li>
+                                En SCSS (fichier .scss) <span class="fragment">✅</span><br>
+                                <pre><code class="css" data-trim>
+                                .error {
+                                    border: solid #FF0000 1px;
+                                    color: #FF0000;
+                                }
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Mais finalement SASS à quoi ça sert ? 🤔</h3>
+          
+                    <ul>
+                        <li>Faire de l'imbrication</li>
+                        <li>Utiliser des conditions if/else</li>
+                        <li>Faire des boucles</li>
+                        <li>Utiliser des variables</li>
+                        <li>Importer des fichiers</li>
+                    </ul>
+                    <p class="fragment">➡️ utiliser les fonctionnalités d'un langage de programmation en CSS 👍</p>
+                </section>
+                <section>
+                    <h3 class="header-title">Comment ça marche ?</h3>
+          
+                    <p style="font-size: 0.7em;">Le compilateur transforme le code SCSS en CSS. On peut utiliser :</p>
+          
+                    <ul style="font-size: 0.7em;">
+                        <li>une application graphique<br><small>Prepros, Codekit, Koala, Scout...</small></li>
+                        <li>Un plugin présent dans notre éditeur de code <br><small>Live Sass Compiler (VSCode), Sass autocompile (Atom), Sass Sublime (Sublime Text)</small></li>
+                        <li>Un taskrunner ou module bundler<br><small>gulp, grunt, webpack, rollup...</small></li>
+                        <li>Un outil en ligne<br><small>Sassmeister</small></li>
+                        <li>La ligne de commande</li>
+                    </ul>
+                </section>
+                <section class="full" data-background-color="rgb(19, 64, 116)">
+                    <div class="centered">
+                        <h2 class="slide-title" style="color: #FFF;">Place à la pratique ! 🎉</h2>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Place à la pratique ! 🎉</h3>
+          
+                    <ol>
+                        <li>
+                            S'il n'est pas déjà présent sur votre machine, <a href="https://nodejs.org/en">installez Node.js</a>
+                            <br>
+                            Vérifiez que node est bien installé
+                            <pre><code data-trim>
+                                node -v
+                            </code></pre>
+                        </li>
+                        <li>
+                            Puis <a href="https://sass-lang.com/">installez SASS</a>
+                            <pre><code data-trim>
+                                npm install -g sass
+                                sass --version
+                            </code></pre>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h3 class="header-title">Place à la pratique ! 🎉</h3>
+          
+                    <div class="d-flex">
+                        <div class="col-6">
+                            <p>
+                                <strong>Notre terrain de jeu :</strong><br>un template simple de portfolio en mode business card
+                                <br>
+                                <br>
+                                <a href="#">Télécharger le template</a>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <img src="images/capture-portfolio.png" alt="">
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Renommer le fichier .css en .scss pour commencer à utiliser sass
+                        lancer ensuite la commande sass --watch style.css style.scss
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Place à la pratique ! 🎉</h3>
+          
+                    <ol>
+                        <li>Renommer le fichier styles.css en styles.<strong>s</strong>css</li>
+                        <li>
+                            Ouvrir le terminal et lancer la commande <br>
+                            <pre></p><code>sass styles.scss styles.css</code></pre>
+                        </li>
+                        <li class="fragment">
+                            Pour ne pas avoir à relancer la commande à chaque fois, utiliser l'option --watch <br>
+                            <pre><code>sass --watch styles.scss styles.css</code></pre>
+                        </li>
+                    </ol>
+                </section>
+                <section data-background-color="rgb(19, 64, 116)">
+                    <h2 style="color: #FFF;">2. Fonctionnalités de SASS</h2>
+                </section>
+                <section>
+                    <h3 class="header-title">Variables</h3>
+                    <p>$variable: &lt;value&gt;</p>
+          
+                    <div class="fragment">
+                        <pre><code data-trim>
+                            $main-color: #72958A;
+                            $secondary-color: #C88F9F;
+                            $sans-serif-family: 'Poppins', Arial, sans-serif;
+                            $container-width: 1280px;
+                        </code></pre>
+          
+                        <p class="fragment">On peut y stocker un nombre, une string, une couleur ou même la valeur d'une déclaration CSS 🎉</p>
+                    </div>
+                </section>
+                <section class="light">
+                    <h3 class="header-title">Variables</h3>
+                    <p><strong>Utiliser les variables SASS pour stocker les couleurs de notre projet</strong></p>
+          
+                    <div class="fragment">
+                        <pre><code class="scss" data-trim>
+                            $color-primary: #00809B;
+                            $color-white: #FFFFFF;
+                        </code></pre>
+                        <p>ou</p>
+                        <pre><code class="scss" data-trim>
+                            $color-primary: var(--color-primary);
+                            $color-white: var(--color-white);
+                        </code></pre>
+                    </div>
+                </section>
+                <section class="light">
+                    <h3 class="header-title">Variables</h3>
+                    <p><strong>Différences entre les variables CSS et SASS</strong></p>
+          
+                    <div>
+                      <pre><code data-trim>
+                        :root {
+                            --main-color: #FFD73E;
+                        }
+          
+                        .title {
+                            color: var(--main-color);
+                        }
+                      </code></pre>
+                    </div>
+                </section>
+                <section >
+                    <h3 class="header-title">Variables</h3>
+                    <p><strong>Différences entre les variables CSS et SASS</strong></p>
+          
+                    <ul>
+                      <li>Les variables SASS sont compilées et ne sont pas visibles dans le code final. Les variables CSS sont directement interprétées par le navigateur</li>
+                      <li>On peut faire varier la valeur des variables CSS en fonction du contexte</li>
+                      <li>On peut y accéder depuis le JS</li>
+                      <li>On ne peut pas utiliser les variables CSS dans les media queries ou les sélecteurs comme nth-child()</li>
+                    </ul>
+                    <p class="fragment">💡 En savoir plus : <a href="https://www.smashingmagazine.com/2018/05/css-custom-properties-strategy-guide/">A Strategy Guide To CSS Custom Properties</a></p>
+                    <aside class="notes">
+                      Je peux modifier une variable SASS en cours de route. Les éléments suivants utiliserons la nouvelle valeur<br>
+                      mais les éléments précédents eux utiliseront toujours l'ancienne valeur. (aller sur sassmeister)<br>
+                      Montrer qu'on peut créer une variable $tablet et l'utiliser dans une media query<br>
+                      Montrer qu'on pourrait utiliser une variable CSS pour faire varier une font-size dans une media query
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Variables</h3>
+                    <p><strong>Interpolation de variables</strong></p>
+          
+                    <div>
+                      <pre><code data-trim class="scss">
+                        .icon-#{$name} {
+                          ...
+                        }
+                        // ---
+                        $sidebar-width: 250px;
+          
+                        .main {
+                          width: calc(100% - #{$sidebar-width});
+                        }
+                        // ---
+                        $property: 'radius';
+                        $value: 4px;
+          
+                        .block {
+                          border-#{$property}: $value;
+                        }
+                        // ----
+                        $i: 1;
 
-          <figure>
-            <img src="images/oc-extend-mixin.png" alt="">
-            <figcaption><small>Le point de vue (assez catégorique) d'OpenClassrooms</small></figcaption>
-          </figure>
+                        .item:nth-child(#{$i}) {
+                          ...
+                        }
+                      </code></pre>
+                    </div>
+                    <aside class="notes">
+                        Interpolation = remplacer une variable par sa valeur<br>
+                        Dans les fonctions CSS (calc, url)<br>
+                        Les pseudo class (:nth-child())<br>
+                        Dans un sélecteur
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Inclusion de fichiers @import</h3>
+                    <div class="fragment">
+                        <p><strong>Séparer notre code en plusieurs fichiers .scss</strong></p>
 
-          <p style="padding-top: 10px;"><small>Un autre point de vue : <a href="https://vanseodesign.com/css/sass-mixin-or-extend/">Sass: When To Use @mixin And When To Use @extend</a></small></p>
+                        <ol class="fragment">
+                            <li>Créer un dossier styles</li>
+                            <li>Créer les fichiers suivants : <code>_variables.scss, _reset.scss, _layout.scss, _card.scss, _bubbles.scss</code></li>
+                            <li>
+                                Les inclure dans le fichier principal styles.scss
+                                <pre><code data-trim class="scss">
+                                    @import 'chemin-vers-mon-fichier';
+                                </code></pre>
+                            </li>
+                        </ol>
+                    </div>
+                    <aside class="notes">Parler des at-rules</aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Inclusion de fichiers @import</h3>
+                    <div>
+                        <p><strong>Séparer notre code en plusieurs fichiers .scss</strong></p>
 
-          <!-- On peut montrer le code suivant pour montrer 1 qu'on ne peut pas faire un extend dans un @media et 2 que le @extend déplace le sélecteur
-          @mixin color-red {
-              color: red;
-          }
+                        <pre><code data-trim class="scss">
+                            @import 'variables';
+                            @import 'reset';
+                            @import 'layout';
+                            @import 'card';
+                            @import 'bubbles';
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Imbrication</h3>
+          
+                    <div class="fragment">
+                        <pre><code data-trim class="scss">
+                            // Code SASS
+                            .site-header {
+                                nav {
+                                    ul {
+                                        li {
+                    
+                                        }
+                                    }
+                                }
+                            }
+                        </code></pre>
+                        <pre><code data-trim class="css">
+                            /* Rendu CSS */
+                            .site-header nav ul li {
+                                ...
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Imbrication</h3>
+          
+                    <div>
+                        <p><strong>Utiliser l'imbrication pour styliser les élements dans l'élément .social</strong></p>
+                    </div>
 
-          .red {
-              color: red;
-          }
+                    <div class="fragment">
+                        <pre><code data-trim class="css">
+                            .social {
+                                .link {
+                                    &:hover {
+                                        ...
+                                    }
+                                }
+                            }
+                        </code></pre>
+                    </div>
 
-          .text1 {
-              @include color-red;
-          }
+                    <aside class="notes">
+                        Montrer l'imbrication "classique"<br>
+                        Montrer l'utilisation avec une media query<br>
+                        Montrer l'utilisation du sélecteur parent &
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Imbrication</h3>
+          
+                    <p class="fragment">Mais c'est génial ! 😃<br>
+                    <span class="fragment">parfois...<span class="fragment">non 💩</span></span></p>
+                    <div class="fragment">
+                        <p>L'imbrication c'est cool MAIS on n'en abuse pas 🙅‍♀️</p>
+                        <p>➡️ pas plus de 3 niveaux d'imbrication</p>
+                    </div>
+                    <aside class="notes">
+                        Montrer que ça peut donner un sélecteur très long, on en verra plus dans les bonnes pratiques
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Sélecteur &</h3>
+          
+                    <div>
+                        <pre><code data-trim class="scss">
+                            // .scss
+                            .social {
+                                .link {
+                                    &:hover {
+                                        ...
+                                    }
+                                }
+                            }
 
-          .text2 {
-              @extend .red;
-          }
-          Règles dupliquées = DRY -->
-        </section>
-        <section>
-          <h3 class="header-title">Boucles</h3>
+                            // .css
+                            .social .link:hover {
+                                ...
+                            }
+                        </code></pre>
+                    </div>
+          
+                    <p class="fragment">"Reprend" le sélecteur parent</p>
+                </section>
+                <section class="light">
+                    <h3 class="header-title">Sélecteur &</h3>
+          
+                    <div>
+                        <pre><code data-trim class="scss">
+                            // Code SASS
+                            a {
+                              color: #000;
+            
+                              .blue-section & {
+                                color: #0000FF;
+                              }
+                            }
+                        </code></pre>
+            
+                        <div class="fragment">
+                            <pre><code data-trim class="css">
+                                /* Code CSS */
+                                a {
+                                  color: #000;
+                                }
+                
+                                .blue-section a {
+                                  color: #0000FF;
+                                }
+                            </code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Commentaires</h3>
+                    <div>
+                        <pre><code data-trim class="scss" width="800px">
+                            // Ce commentaire est un commentaire sass
+                            // Il ne sera pas visible dans notre code CSS final.
+            
+                            /* Ce commentaire CSS en revanche oui. */
+                        </code></pre>
+                  </section>
+                <section>
+                    <h3 class="header-title">@extend et %placeholder</h3>
+          
+                    <p style="font-size: 0.7em;"><strong>Permet à un sélecteur d'hériter des styles d'un autre</strong></p>
+          
+                    <div class="d-flex">
+                        <div class="col-6 fragment" style="font-size: 0.7em;">
+                            <pre><code class="scss" data-trim>
+                              // Code SASS
+                              .link {
+                                display: inline-block;
+                                padding: 5px 10px;
+                                border-radius: 40px;
+                                background-color: #FFF;
+                                color: #333;
+                                text-decoration: none;
+                              }
+                
+                              .link-reverse {
+                                @extend .link;
+                                background-color: #333;
+                                color: #FFF;
+                              }
+                            </code></pre>
+                        </div>
+                        <div class="col-6 fragment" style="font-size: 0.7em;">
+                            <pre><code data-trim class="css">
+                                /* Code CSS */
+                                .link, .link-reverse {
+                                  display: inline-block;
+                                  padding: 5px 10px;
+                                  border-radius: 40px;
+                                  background-color: #FFF;
+                                  color: #333;
+                                  text-decoration: none;
+                                }
+                                
+                                .link-reverse {
+                                  background-color: #333;
+                                  color: #FFF;
+                                }
+                            </code></pre>
+                        </div>
+                    </div>
+                    <p class="fragment" style="font-size: 0.7em;">Utiliser @extend pour le style de lien .link-reverse dans le template</p>
+                    <aside class="notes">
+                        Expliquer, sans trop insister, que link-reverse est ajouté à chaque endroit où notif apparait
+                    </aside>
+                </section>
+                <section class="light">
+                    <h3 class="header-title">@extend et %placeholder</h3>
+          
+                    <p style="font-size: 0.7em;"><strong>%placeholder</strong></p>
+          
+                    <div class="d-flex">
+                        <div class="col-6 fragment" style="font-size: 0.7em;">
+                            <pre><code class="scss" data-trim>
+                                // Code SASS
+                                %link {
+                                  display: inline-block;
+                                  padding: 5px 10px;
+                                  border-radius: 40px;
+                                  text-decoration: none;
+                                }
+                                
+                                .link-default {
+                                  @extend %link;
+                                  background-color: #FFF;
+                                  color: #333;
+                                }
+                                
+                                .link-reverse {
+                                  @extend %link;
+                                  background-color: #333;
+                                  color: #FFF;
+                                }
+                            </code></pre>
+                        </div>
+                        <div class="col-6 fragment" style="font-size: 0.7em;">
+                            <pre><code data-trim class="css">
+                              /* Code CSS */
+                              .link-default, .link-reverse {
+                                display: inline-block;
+                                padding: 5px 10px;
+                                border-radius: 40px;
+                                text-decoration: none;
+                              }
+                              
+                              .link-default {
+                                background-color: #FFF;
+                                color: #333;
+                              }
+                              
+                              .link-reverse {
+                                background-color: #333;
+                                color: #FFF;
+                              }
+                            </code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">@extend et %placeholder</h3>
+          
+                    <p><strong>Ce qu'il faut retenir ✍</strong></p>
+                    <ul>
+                        <li>Avec @extend on hérite des styles d'un sélecteur CSS</li>
+                        <li>Avec un %placeholder c'est la même chose sauf que le code de la classe étendue n'est pas visible dans le CSS final (et donc pas utilisable dans le HTML)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixin et conditions</h3>
+          
+                    <p>
+                        <strong>Pour centrer un élément on utilise fréquemment le code suivant :</strong><br>
+                    </p>
+          
+                    <div class="fragment">
+                        <pre><code class="scss" data-trim>
+                            body {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                            }
+                        </code></pre>
+                    </div>
+          
+                    <p style="font-size: 0.7em;" class="fragment">Si on centre un élément de la même façon, ailleurs dans notre site, on va devoir répéter ces 3 lignes de code à chaque fois 😕</p>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixin et conditions</h3>
+          
+                    <p>
+                      <strong>La mixin est là pour ça 🙌</strong><br>
+                    </p>
+          
+                    <div class="fragment">
+                        <pre><code data-trim class="scss">
+                            @mixin center-flex {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                            }
+                        </code></pre>
+                    </div>
+          
+                    <div class="fragment">
+                        <pre><code data-trim class="scss">
+                            body {
+                              @include center-flex;
+                            }
+                        </code></pre>
+                    </div>
+          
+                    <p style="font-size: 0.7em;" class="fragment">On peut même compliquer un peu notre mixin pour faire en sorte qu'elle puisse centrer des éléments horizontalement, verticalement <strong>ou</strong> les 2...</p>
+          
+                    <aside class="notes">Une mixin permet de définir des styles qui vont être réutilisés</aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixin et conditions</h3>
+          
+                    <p style="font-size: 0.8em;">
+                        <strong>On va utiliser les arguments et les conditions <br>(attention ça se complique un peu) 😉</strong><br>
+                    </p>
+          
+                    <div class="fragment">
+                        <pre><code data-trim class="scss">
+                            @mixin center-flex($type: null) {
+                              display: flex;
+            
+                              @if $type == 'x' {
+                                justify-content: center;
+                              } @else if $type == 'y' {
+                                align-items: center;
+                              } @else {
+                                align-items: center;
+                                justify-content: center;
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins</h3>
+          
+                    <p><strong>Ce qu'il faut retenir ✍</strong></p>
+                    <pre><code data-trim class="scss">
+                      // Déclarer une mixin avec la at-rule @mixin
+                      @mixin ma-mixin($argument) {
+                        ...
+                      }
+          
+                      // L'utiliser avec la at-rule @include
+                      .selecteur {
+                        @include ma-mixin($argument);
+                      }
+                    </code></pre>
+                </section>
+                <section>
+                    <h3 class="header-title">Conditions</h3>
+          
+                    <p><strong>Ce qu'il faut retenir ✍</strong></p>
+                    <pre><code data-trim class="scss">
+                      @if ...
+                      @else if ...
+                      @else ...
+                    </code></pre>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins et @extend</h3>
+          
+                    <p>⚠️ On peut parfois faire la même chose avec une mixin ou une règle @extend, mais le code produit n'est pas le même.</p>
+                    <p class="fragment">Mixin duplique <strong>un ensemble de règles</strong> alors que @extend duplique le <strong>sélecteur</strong>.</p>
+                    <aside class="notes">Montrer un exemple concret sur sassmeister avec link par exemple</aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins et @extend</h3>
+          
+                    <p><strong>Comment savoir si on doit utiliser une mixin ou une règle @extend ? 🤔</strong></p>
+                    <p class="fragment" style="font-size: 0.8em;">
+                        Vous avez besoin d'utiliser un ou des argument(s) ? ➡️ mixin<br>
+                        Mis à part ça... il n'y a pas réellement de règle 🤷‍♀️
+                    </p>
+                    <ul class="fragment">
+                        <li>Dupliquer des règles rend le fichier <strong>plus lourd</strong> et ne respecte pas le principe du <strong>DRY (Don't Repeat Yourself)</strong></li>
+                        <li>Dupliquer les sélecteurs change <strong>l'ordre</strong> de vos sélecteurs</li>
+                    </ul>
+                    <aside class="notes">Montrer sur sassmeister un exemple de changement d'ordre de sélecteurs</aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins et @extend</h3>
+                    <img src="images/oc-logo.png" alt="" style="width: 50px; margin: 0;">
+                    <p><em>“ The answer is actually pretty simple: don’t use extensions. ”</em></p>
+          
+                    <figure>
+                      <img src="images/oc-extend-mixin.png" alt="">
+                      <figcaption><small>Le point de vue (assez catégorique) d'OpenClassrooms</small></figcaption>
+                    </figure>
+          
+                    <p style="padding-top: 10px;"><small>Un autre point de vue : <a href="https://vanseodesign.com/css/sass-mixin-or-extend/">Sass: When To Use @mixin And When To Use @extend</a></small></p>
+                </section>
+                <section>
+                    <h3 class="header-title">Boucles</h3>
+          
+                    <p style="font-size: 0.8em;">
+                        <strong>Avec SASS on peut également faire des boucles for <br>(et oui ça peut être utile)</strong>
+                    </p>
+          
+                    <div class="d-flex">
+                        <div class="fragment col-6">
+                            <pre><code data-trim class="scss">
+                                // Code SASS
+                                @for $i from 1 through 3 {
+                                  li:nth-child(#{$i}) {
+                                    top: 10px * $i;
+                                  }
+                                }
+                            </code></pre>
+                        </div>
+                        <div class="fragment col-6">
+                            <pre><code data-trim  class="scss">
+                                /* Code CSS */
+                                li:nth-child(1) {
+                                  top: 10px;
+                                }
+                
+                                li:nth-child(2) {
+                                  top: 20px;
+                                }
+                
+                                li:nth-child(3) {
+                                  top: 30px;
+                                }
+                            </code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Boucles</h3>
+          
+                    <p><strong>Ce qu'il faut retenir ✍</strong></p>
+                    <pre><code data-trim class="scss">
+                    @for $i from 1 through 3 {
+                      // Boucle qui fait varier $i à 1, 2 puis 3
+                    }
+          
+                    @for $i from 1 to 3 {
+                      //  Boucle qui fait varier $i à 1 puis 2
+                    }
+                    </code></pre>
+                </section>
+                <section class="light">
+                    <h3 class="header-title">Fonctions</h3>
+          
+                    <p>
+                        <strong>Une fonction se présente comme une mixin sauf qu'elle ne génère pas des règles CSS mais nous retourne une valeur</strong>
+          
+                        <div class="fragment">
+                        <pre><code data-trim>
+                          @function twice($value) {
+                            $result: $value * 2;
+          
+                            @return $result;
+                          }
+          
+                          .block {
+                            width: twice(200) + px;
+                          }
+                        </code></pre>
+                      </div>
+                    </p>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions</h3>
+          
+                    <p><strong>Ce qu'il faut retenir ✍</strong></p>
+                    <pre><code data-trim class="scss">
+                      // Déclarer une fonction avec la at-rule @function
+                      @function ma-fonction($argument) {
+                        $result: ...
+          
+                        // Retourner un résultat avec la at-rule @return
+                        @return $result;
+                      }
+          
+                      // Utiliser la fonction
+                      .selecteur {
+                        width: ma-fonction($argument);
+                      }
+                    </code></pre>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions SASS</h3>
+          
+                    <div>
+                        <p><strong>Ensemble de fonctions contenues <br>dans différents modules pré-existants :</strong></p>
+                        <ul>
+                            <li>sass:color<span class="fragment"> ✅</span></li>
+                            <li>sass:list</li>
+                            <li>sass:map<span class="fragment"> ✅</span></li>
+                            <li>sass:math<span class="fragment"> ✅</span></li>
+                            <li>sass:meta</li>
+                            <li>sass:selector</li>
+                            <li>sass:string</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions SASS</h3>
+          
+                    <div>
+                        <p><strong>sass:color</strong></p>
+                        <pre><code data-trim class="scss">
+                        // Code à inclure au tout début d'un fichier sass
+                        @use 'sass:color';
+            
+                        .block {
+                          color: color.scale(#e1d7d2, $lightness: -30%); // + sombre
+                        }
+                        .block2 {
+                          color: color.scale(#e1d7d2, $lightness: 30%); // + claire
+                        }
+            
+                        // Retourne la luminosite d'une couleur (de 0% à 100%)
+                        color.lightness(#e1d7d2);
+            
+                        // Fonctions globales
+                        .block3 {
+                          color: rgba(#FF0000, 0.5);
+                        }
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions SASS</h3>
+          
+                    <div>
+                        <p><strong>sass:color</strong></p>
+                        <p style="font-size: 0.8em;">Changer l'effet au hover sur le lien "Send me an email" et assombrir la couleur de background</p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions SASS</h3>
+           
+                     <div>
+                        <p><strong>sass:math</strong></p>
+                        <pre><code data-trim class="scss">
+                            @use 'sass:math';
+            
+                            // Retourne un nombre aléatoire entre 1 et 10
+                            math.random(10);
+            
+                            // Arrondi à l'entier inférieur
+                            math.floor(2.5);
+            
+                            math.ceil(4.2);
+                            math.max(1px, 4px);
+                            math.$pi;
+                        </code></pre>
+                     </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Fonctions SASS</h3>
+           
+                     <div>
+                        <p><strong>sass:map</strong></p>
+                        <pre><code data-trim class="scss">
+                            @use 'sass:map';
+            
+                            $icons: (
+                              music: '\f001',
+                              search: '\f002',
+                              heart: '\f003'
+                            );
 
-          <p style="font-size: 0.8em;">
-            <strong>Avec SASS on peut également faire des boucles for <br>(et oui ça peut être utile)</strong>
-          </p>
+                            @each $name, $value in $icons {
+                              .icon-#{$name}::before {
+                                content: $value;
+                              }
+                            }
+                        </code></pre>
+                     </div>
+                     <!--<div>A montrer si j'ai le temps :)
+                        @use 'sass:map';
 
-          <div class="fragment">
-            <pre><code data-trim class="scss">
-              // Code SASS
-              @for $i from 1 through 3 {
-                li:nth-child(#{$i}) {
-                  top: 10px * $i;
-                }
-              }
-            </code></pre>
-          </div>
-          <div class="fragment">
-            <pre><code data-trim  class="scss">
-              /* Code CSS */
-              li:nth-child(1) {
-                top: 10px;
-              }
+                        $font-sizes: (
+                            text: (
+                            mobile: 14px,
+                            tablet: 16px,
+                            desktop: 18px
+                            ),
+                            h1: (
+                            mobile: 42px,
+                            tablet: 52px,
+                            desktop: 62px
+                            ),
+                            h2: (
+                            mobile: 20px,
+                            tablet: 22px,
+                            desktop: 24px
+                            )
+                        );
 
-              li:nth-child(2) {
-                top: 20px;
-              }
+                        $major-breakpoints: (mobile, tablet, desktop);
 
-              li:nth-child(3) {
-                top: 30px;
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Boucles</h3>
+                        $mqs: (
+                            tablet: 'min-width: 768px',
+                            desktop: 'min-width: 1024px'
+                        );
 
-          <p><strong>Ce qu'il faut retenir ✍</strong></p>
-          <pre><code data-trim class="scss">
-          @for $i from 1 through 3 {
-            // Boucle qui fait varier $i à 1, 2 puis 3
-          }
+                        @mixin set-font-sizes($type: text) {
+                            @each $device in $major-breakpoints {
+                                @if map.has-key($mqs, $device) {
+                                @media all and (map.get($mqs, $device)) {
+                                    font-size: map.get(map.get($font-sizes, $type), $device);
+                                }
+                                } @else {
+                                font-size: map.get(map.get($font-sizes, $type), $device);
+                                }
+                            }
+                        }
 
-          @for $i from 1 to 3 {
-            //  Boucle qui fait varier $i à 1 puis 2
-          }
-          </code></pre>
-        </section>
-        <section class="light">
-          <h3 class="header-title">Fonctions</h3>
+                        h1 {
+                            @include set-font-sizes(h1);
+                        }
 
-          <p>
-            <strong>Une fonction se présente comme une mixin sauf qu'elle ne génère pas des règles CSS mais nous retourne une valeur</strong>
+                        h2 {
+                            @include set-font-sizes(h2);
+                        }
 
-            <div class="fragment">
-              <pre><code data-trim>
-                @function twice($value) {
-                  $result: $value * 2;
-
-                  @return $result;
-                }
-
-                .block {
-                  width: twice(200) + px;
-                }
-              </code></pre>
-            </div>
-          </p>
-        </section>
-        <section>
-          <h3 class="header-title">Fonctions</h3>
-
-          <p><strong>Ce qu'il faut retenir ✍</strong></p>
-          <pre><code data-trim class="scss">
-            // Déclarer une fonction avec la at-rule @function
-            @function ma-fonction($arg) {
-              $result: ...
-
-              // Retourner un résultat avec la at-rule @return
-              @return $result;
-            }
-
-            // Utiliser la fonction
-            .selecteur {
-              width: ma-fonction(200);
-            }
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Fonctions SASS</h3>
-
-          <div>
-            <p><strong>Ensemble de fonctions contenues <br>dans différents modules pré-existants :</strong></p>
-            <ul>
-              <li>sass:color<span class="fragment"> ✅</span></li>
-              <li>sass:list</li>
-              <li>sass:map<span class="fragment"> ✅</span></li>
-              <li>sass:math<span class="fragment"> ✅</span></li>
-              <li>sass:meta</li>
-              <li>sass:selector</li>
-              <li>sass:string</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Fonctions SASS</h3>
-
-          <div>
-            <p>sass:color</p>
-            <pre><code data-trim class="scss">
-            // Code à inclure au tout début d'un fichier sass
-            @use 'sass:color';
-
-            .block {
-              color: color.scale(#e1d7d2, $lightness: -30%); // darken
-            }
-            .block2 {
-              color: color.scale(#e1d7d2, $lightness: 30%); // lighten
-            }
-
-            // Retourne la luminosite d'une couleur (de 0% à 100%)
-            color.lightness(#e1d7d2);
-
-            // Fonctions globales
-            .block3 {
-              color: rgba(#FF0000, 0.5);
-            }
-            </code></pre>
-          </div>
-          <aside class="notes">
-            Ajouter un effet au hover sur les barres de compétences (lightness -30 par exemple)
-            Expliquer l'historique du sass module system (qui n'existait pas auparavant)
-          </aside>
-        </section>
-        <section>
-         <h3 class="header-title">Fonctions SASS</h3>
-
-          <div>
-            <p>sass:math</p>
-            <pre><code data-trim class="scss">
-              @use 'sass:math';
-
-              // Retourne un nombre aléatoire entre 1 et 10
-              math.random(10);
-
-              // Arrondi à l'entier inférieur
-              math.floor(2.5);
-
-              math.ceil(4.2);
-              math.max(1px, 4px);
-              math.$pi;
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Fonctions SASS</h3>
- 
-           <div>
-             <p>sass:map</p>
-             <pre><code data-trim class="scss">
-              @use 'sass:map';
-
-              $icons: (
-                music: ‘\f001’,
-                search: ‘\f002’,
-                heart: ‘\f003’
-              );
-              @each $name, $value in $icons {
-                .icon-#{$name}::before {
-                  content: $value;
-                }
-              }
-             </code></pre>
-           </div>
-         </section>
-         <!--<div>A montrer si j'ai le temps :)
-          @use 'sass:map';
-
-          $font-sizes: (
-            text: (
-              mobile: 14px,
-              tablet: 16px,
-              desktop: 18px
-            ),
-            h1: (
-              mobile: 42px,
-              tablet: 52px,
-              desktop: 62px
-            ),
-            h2: (
-              mobile: 20px,
-              tablet: 22px,
-              desktop: 24px
-            )
-          );
-
-          $major-breakpoints: (mobile, tablet, desktop);
-
-          $mqs: (
-            tablet: 'min-width: 768px',
-            desktop: 'min-width: 1024px'
-          );
-
-          @mixin set-font-sizes($type: text) {
-            @each $device in $major-breakpoints {
-                @if map.has-key($mqs, $device) {
-                  @media all and (map.get($mqs, $device)) {
-                    font-size: map.get(map.get($font-sizes, $type), $device);
-                  }
-                } @else {
-                  font-size: map.get(map.get($font-sizes, $type), $device);
-                }
-            }
-          }
-
-          h1 {
-              @include set-font-sizes(h1);
-          }
-
-          h2 {
-              @include set-font-sizes(h2);
-          }
-
-          body {
-              @include set-font-sizes(text);
-          }
-        </div>-->
-        <section class="full" data-background-color="rgb(19, 64, 116)">
-          <div class="centered">
-            <h2 style="color: #FFF;">Exercices 🤓</h2>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 1 🤓</h3>
-          <p>
-            <strong>Objectif : créer une fonction qui éclairci / obscurci une couleur en fonction de sa luminosité</strong>
-          </p>
-
-          <ul>
-            <li>Créer une fonction <em>hover-alternate-color</em> qui prends en paramètre une couleur</li>
-            <li><strong>Si</strong> sa luminosité est inférieure à 25%, retourner une couleur 20% plus claire</li>
-            <li><strong>Sinon</strong> retourner une couleur 20% plus sombre</li>
-            <li>Montrer un exemple d'utilisation de la fonction</li>
-            <li>
-              Utiliser les fonctions SASS suivantes :
-              <div style="padding-top: 10px;">
-                <pre style="width: 100%; margin: 0;"><code data-trim class="scss">
-                  color.scale($color, $lightness);
-                  color.lightness($color);
-                </code></pre>
-              </div>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 1 🤓</h3>
-
-          <p><strong>Code final</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:color';
-
-              @function hover-alternate-color($color) {
-                $result: '';
-
-                @if (color.lightness($color) < 25%) {
-                  $result: color.scale($color, $lightness: 20%);
-                } @else {
-                  $result: color.scale($color, $lightness: -20%);
-                }
-
-                @return $result;
-              }
-
-              a {
-                color: #000;
-
-                &:hover {
-                  color: hoverAlternateColor(#000);
-                }
-              }
-            </code></pre>
-          </div>
-          <aside class="notes">Montrer qu'on peut l'utiliser sur .skill__value-inset</aside>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
-
-          <p>
-            <strong>Objectif : reproduire l'animation suivante</strong>
-
-            <video controls style="width: 65%; margin-top: 15px;">
-              <source src="videos/biosphere.mp4" type="video/mp4">
-            </video>
-          </p>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
-
-          <div class="d-flex" style="align-items: flex-start;">
-            <video controls loop style="width: 35%;">
-              <source src="videos/biosphere.mp4" type="video/mp4">
-            </video>
-            <div style="width: 65%;">
-              <ul style="padding-left: 15px;">
-                <li>Faire une boucle de 4 itérations</li>
-                <li>
-                  A chaque tour de boucle
-                  <ul>
-                    <li>Créer une fonction d'animation à l'aide de <strong>@keyframes</strong> qui utilise la fonction SASS <strong>random</strong></li>
-                    <li>Appliquer cette <strong>animation</strong> à l'élément de la boucle</li>
-                  </ul>
-                </li>
-                <li>Spoiler :</li>
-                <div>
-                  <pre style="width: 100%; margin: 0;"><code data-trim class="scss">
-                      @keyframes stats-item-animation {
-                        100% {
-                          transform: translate(math.random(10) + px, math.random(10) + px);
+                        body {
+                            @include set-font-sizes(text);
+                        }
+                        </div>-->
+                </section>
+                <section class="full" data-background-color="rgb(19, 64, 116)">
+                    <div class="centered">
+                        <h2 style="color: #FFF;">Exercices 🤓</h2>
+                    </div>
+                  </section>
+                  <section>
+                    <h3 class="header-title">Exercice 1 🤓</h3>
+                    <p>
+                        <strong style="font-size: 0.99em;">Objectif : créer une fonction qui éclairci / obscurci une couleur en fonction de la luminosité de celle-ci</strong>
+                    </p>
+          
+                    <ul>
+                        <li>Créer une fonction <em>hover-alternate-color</em> qui prends en paramètre une couleur</li>
+                        <li><strong>Si</strong> la luminosité de la couleur est inférieure à 25%, retourner une couleur  <strong>15% plus claire</strong></li>
+                        <li><strong>Sinon</strong> retourner une couleur <strong>15% plus sombre</strong></li>
+                        <li>Montrer un exemple d'utilisation de la fonction</li>
+                        <li>
+                            Utiliser les fonctions SASS suivantes :
+                            <div style="padding-top: 10px;">
+                                <pre style="width: 100%; margin: 0; font-size: 0.8em;"><code data-trim class="scss">
+                                    color.scale($color, $lightness);
+                                    color.lightness($color);
+                                </code></pre>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 class="header-title">Exercice 1 🤓</h3>
+          
+                    <p><strong>Code final</strong></p>
+                    <div style="font-size: 0.78em;">
+                        <pre><code data-trim class="scss">
+                            @use 'sass:color';
+            
+                            @function hover-alternate-color($color) {
+                              $result: '';
+            
+                              @if (color.lightness($color) < 25%) {
+                                $result: color.scale($color, $lightness: 15%);
+                              } @else {
+                                $result: color.scale($color, $lightness: -15%);
+                              }
+            
+                              @return $result;
+                            }
+            
+                            a {
+                              color: #000;
+            
+                              &:hover {
+                                color: hover-alternate-color(#000);
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                    <aside class="notes">Montrer qu'on peut l'utiliser sur .link-reverse</aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Exercice 2 🤓</h3>
+          
+                    <p>
+                        <strong>Objectif : reproduire l'animation suivante</strong>
+            
+                        <video controls style="width: 65%; margin-top: 15px;">
+                            <source src="videos/biosphere.mp4" type="video/mp4">
+                        </video>
+                    </p>
+                </section>
+                <section>
+                    <h3 class="header-title">Exercice 2 🤓</h3>
+          
+                    <div class="d-flex" style="align-items: flex-start;">
+                        <video controls loop style="width: 35%;">
+                            <source src="videos/biosphere.mp4" type="video/mp4">
+                        </video>
+                        <div style="width: 65%;">
+                            <ul style="padding-left: 15px;">
+                                <li>Faire une boucle de 4 itérations</li>
+                                <li>
+                                    A chaque tour de boucle
+                                    <ul>
+                                        <li>Créer une fonction d'animation à l'aide de <strong>@keyframes</strong> qui utilise la fonction SASS <strong>random</strong> (penser à inclure sass.math)</li>
+                                        <li>Appliquer cette <strong>animation</strong> à l'élément de la boucle</li>
+                                    </ul>
+                                </li>
+                                <li>Spoiler :</li>
+                                <div class="fragment">
+                                    <pre style="width: 100%; margin: 0;"><code data-trim class="scss">
+                                        @keyframes bubbles-animation {
+                                          100% {
+                                            transform: translate(math.random(10) + px, math.random(10) + px);
+                                          }
+                                        }
+                                    </code></pre>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Exercice 2 🤓</h3>
+          
+                    <p><strong>Code final</strong></p>
+                    <div style="font-size: 0.78em;">
+                        <pre><code data-trim class="scss">
+                            @use 'sass:math';
+            
+                            @for $i from 1 through 4 {
+                              @keyframes bubbles-animation-#{$i} {
+                                100% {
+                                  transform: translate(math.random(13) + 7px, math.random(13) + 7px);
+                                }
+                              }
+                            
+                              .bubble:nth-child(#{$i}) {
+                                animation: bubbles-animation-#{$i} 2.8s infinite;
+                                animation-delay: $i * 0.2s;
+                                animation-direction: alternate;
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Exercice 2 🤓</h3>
+          
+                    <p><strong>Si on va un peu plus loin...</strong></p>
+                    <div style="font-size: 0.78em;">
+                        <pre><code data-trim class="scss">
+                            @use 'sass:math';
+            
+                            @function get-sign($number) {
+                              @if $number == 1 {
+                                @return -1;
+                              }
+                            
+                              @return 1;
+                            }
+                            
+                            @for $i from 1 through 4 {
+                              @keyframes bubbles-animation-#{$i} {
+                                100% {
+                                  transform: translate((math.random(13) + 7px) * get-sign(math.random(2)), (math.random(13) + 7px) * get-sign(math.random(2)));
+                                }
+                              }
+                            
+                              .bubble:nth-child(#{$i}) {
+                                animation: bubbles-animation-#{$i} 2.8s infinite;
+                                animation-delay: $i * 0.2s;
+                                animation-direction: alternate;
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section data-background-color="rgb(19, 64, 116)">
+                    <h2 style="color: #FFF;">3. Bonnes pratiques</h2>
+                </section>
+                <section>
+                    <h3 class="header-title">Attention à la surimbrication</h3>
+          
+                    <div>
+                        <p><strong>Les risques : 💥</strong></p>
+                        <ul>
+                            <li>Fichier CSS lourd</li>
+                            <li>Moins performant</li>
+                            <li>Difficile à maintenir</li>
+                        </ul>
+                        <p class="fragment" style="font-size: 0.8em;">Sachez que la performance des sélecteurs CSS peut se mesurer avec les developer tools du navigateur Edge : <br><a href="https://blogs.windows.com/msedgedev/2023/01/17/the-truth-about-css-selector-performance/">The truth about CSS selector performance</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Attention à la surimbrication</h3>
+                    <img src="images/inception.jpg" style="width: 50%;" alt="">
+                    <p>➡️ "Inception Rule" : pas plus de 3 niveaux d'imbrication</p>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins utiles</h3>
+          
+                    <div>
+                        <ul>
+                            <li>Gestion des fonts et tailles des textes</li>
+                            <li>Centrage des éléments</li>
+                            <li>Media queries</li>
+                        </ul>
+                        <p class="fragment" style="line-height: 1.5em;">
+                            📍 <a href="https://gist.github.com/kaymorey/dc9a40a6b3b476a211f308e2deeebbc7">Mes fichiers de variables et mixins par défaut</a>
+                            <br>
+                            📰 <a href="https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2">10 awesome SASS mixins</a>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Mixins utiles</h3>
+                    <p>Librairie SASS : <a href="https://eduardoboucas.github.io/include-media">@include-media</a></p>
+          
+                    <pre><code data-trim class="scss">
+                      $breakpoints: (phone: 320px, tablet: 768px, desktop: 1024px);
+          
+                      .block {
+                        @include media(">phone", "<=tablet") {
+                          width: 50%;
                         }
                       }
-                  </code></pre>
-                </div>
-              </ul>
+                    </code></pre>
+                </section>
+                <section>
+                    <h3 class="header-title">Organisation des fichiers</h3>
+                    <div>
+                        <p><strong>Pattern 7-1</strong></p>
+                        <pre><code data-trim>
+                            scss/
+                            |– abstracts/
+                            |– base/
+                            |– components/
+                            |– layout/
+                            |– pages/
+                            |– themes/
+                            |– vendors/
+                            `– main.scss
+                        </code></pre>
+                        <p><a href="https://sass-guidelin.es/fr/#le-pattern-7-1">https://sass-guidelin.es/fr/#le-pattern-7-1</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Les composants : OOCSS</h3>
+                    <div>
+                      <p><strong>OOCSS : Oriented Object CSS</strong></p>
+                      <figure>
+                        <img src="images/media-object.png" alt="">
+                        <figcaption style="font-size: 0.6em;">Le media object, introduit par Nicole Sullivan en 2010</figcaption>
+                      </figure>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Les composants : OOCSS</h3>
+                    <div>
+                        <p><strong>OOCSS introduit 2 grands principes :</strong></p>
+                        <ol>
+                            <li>
+                                Séparation de la structure et de l’apparence<br>
+                                <small>On utilise des classes, on ne cible pas des éléments HTML</small>
+                            </li>
+                            <li>
+                                Séparation du conteneur et du contenu<br>
+                                <small>On peut utiliser nos composants dans n'importe quel contexte</small>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Les composants : OOCSS</h3>
+                    <div>
+                        <h3>Comment on fait ?</h3>
+                        <p>
+                            En amont du project on <strong>repère 👀</strong> les éléments <strong>communs ou répétés</strong> dans nos pages pour en faire des composants
+                        </p>
+                    </div>
+                    <br><br>
+                    <div>
+                        <h3>A quoi ça sert ?</h3>
+                        <p>A gagner en <strong>productivité</strong> 🚀 et en <strong>maintenabilité</strong> 🛠</p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title" style="margin: 0;">Les composants : OOCSS</h3>
+                    <div style="position: relative; width: 32%; margin: 0 auto;">
+                        <img style="max-width: 100%; max-height: 100%; margin: 0;" src="images/avea-vacances1.jpg" alt="">
+                        <img class="fragment" style="width: 100%; max-width: 100%; max-height: 100%; margin: 0; position: absolute; top: 0; left: 0;" src="images/avea-vacances2.jpg" alt="">
+                    </div>
+                    <aside class="notes">
+                        https://www.avea-vacances.fr/offres?offer_search%5Breference%5D=&sort=
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Les composants : OOCSS</h3>
+
+                    <p>
+                        Quels <strong>composants réutilisables</strong> pourriez-vous créer sur la maquette suivante ? <br><small>(cliquer pour la voir en grand)</small><br>
+                        <a href="images/booki.png" target="_blank"><img src="images/booki.png" alt="" width="280"></a>
+                    </p>
+                </section>
+                <section>
+                    <h3 class="header-title">Introduction à BEM</h3>
+          
+                    <div>
+                        <p><strong>BEM : Block Element Modifier</strong></p>
+                        <img src="images/bem.jpg" alt="">
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Introduction à BEM</h3>
+          
+                    <div>
+                        <p><strong>BEM : Block Element Modifier</strong></p>
+                        <img src="images/bem-element.jpg" alt="">
+                        <p>.block__element--modifier</p>
+                    </div>
+                    <pre><code data-trim>
+                      .search-form { }
+                      .search-form__input { }
+                      .search-form__btn { }
+                      .search-form__btn--light { }
+                    </code></pre>
+                </section>
+                <section>
+                    <h3 class="header-title">Introduction à BEM</h3>
+
+                    <div>
+                        <p style="font-size: 0.8em;"><strong>Essayez de renommer les classes de notre template pour utiliser BEM</strong></p>
+
+                        <ul>
+                            <li>
+                                ⚠️ on ne peut pas écrire <code>.block__element1__element2</code><br>créez plutôt un autre block si besoin
+                                <pre><code data-trim class="scss">
+                                    .sublock__element2 { }
+                                    .block__element1-element2
+                                </code></pre>
+                            </li>
+
+                            <li>
+                                Un modifier peut s'appliquer à un block ou un élément
+                                <pre><code data-trim class="scss">
+                                    .block--modifier { }
+                                    .block__element--modifier { }
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </div>
+                    <aside class="notes">
+                        Montrer le code avea vacances pour des exemples de block__element1__element2
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="header-title">Introduction à BEM</h3>
+
+                    <div>
+                        <p style="font-size: 0.8em;"><strong>SASS & BEM</strong></p>
+
+                        <p style="font-size: 0.8em;">On peut utiliser l'imbrication de SASS pour écrire nos sélecteurs BEM plus rapidement</p>
+
+                        <pre><code data-trim class="scss">
+                            .block {
+                              &__element1 {
+                                ...
+                              }
+
+                              &__element2 {
+                                ...
+
+                                &--modifier {
+                                    ...
+                                }
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Introduction à BEM</h3>
+
+                    <div>
+                        <p style="font-size: 0.8em;"><strong>SASS & BEM</strong></p>
+
+                        <ul>
+                            <li>⚠️ on n'oublie pas <strong>l'inception rule</strong> et dans un soucis de visibilité on évite d'en abuser</li>
+                            <li>Personnellement je ne l'utilise que pour les modifier</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Compiler son SASS... et plus !</h3>
+          
+                    <div class="fragment">
+                        <p>
+                            <strong>Avec les taskrunners</strong>
+                            <br>
+                            <small>Grunt, gulp, brunch...</small>
+                        </p>
+                    </div>
+                    <br>
+                    <div class="fragment">
+                        <p>
+                            <strong>Avec un module bundler</strong>
+                            <br>
+                            <small>Webpack, browserify...</small>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="header-title">Liens utiles</h3>
+          
+                    <div>
+                        <p>
+                            <a href="https://sass-lang.com/">Site officiel de SASS</a>
+                            <br>
+                            <a href="https://sass-guidelin.es">Bonnes pratiques en SASS</a>
+                            <br>
+                            <br>
+                            et pour aller plus loin :
+                            <br>
+                            <a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">BEM - explication de la syntaxe d'Harry Roberts</a>
+                            <br>
+                            <a href="https://www.nicoespeon.com/fr/2013/05/plongee-au-coeur-de-oocss/">Plongée au coeur de l'OOCSS</a>
+                        </p>
+                    </div>
+                </section>
+                <section data-background-color="rgb(19, 64, 116)">
+                    <h2 style="padding-top: 20px; color: #FFF; line-height: 1.4em;">Merci pour votre attention 👩‍💻👨‍💻 !</h2>
+                    <p style="color: #FFF; padding-top: 25px;">
+                    Une question ?<br>
+                    </p>
+                    <ul>
+                        <li>
+                            🐦
+                            <a href="https://twitter.com/kaymorey">Twitter @kaymorey</a>
+                        </li>
+                        <li>
+                            💼
+                            <a href="https://www.linkedin.com/in/katiamoreira/">Linkedin</a>
+                        </li>
+                        <li>
+                            📧
+                            <a href="mailto:bonjour@katiamoreira.fr">bonjour@katiamoreira.fr</a>
+                        </li>
+                    </ul>
+                    <p style="padding-top: 50px;"><a href="https://cours-sass.vercel.app/">https://cours-sass.vercel.app/</a></p>
+                </section>
             </div>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
+        </div>
 
-          <p><strong>Code final</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:math';
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
 
-              @for $i from 1 through 4 {
-                @keyframes stats-item-animation-#{$i} {
-                  100% {
-                    transform: translate(math.random(21) + 9px, math.random(21) + 9px);
-                  }
-                }
-              
-                .stats-item:nth-child(#{$i}) {
-                  animation: stats-item-animation-#{$i} 2.6s infinite;
-                  animation-delay: $i * 0.2s;
-                  animation-direction: alternate;
-                }
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Exercice 2 🤓</h3>
-
-          <p><strong>Si on va un peu plus loin...</strong></p>
-          <div style="font-size: 0.78em;">
-            <pre><code data-trim class="scss">
-              @use 'sass:math';
-
-              @function get-sign($number) {
-                @if $number == 1 {
-                  @return -1;
-                }
-              
-                @return 1;
-              }
-              
-              @for $i from 1 through 4 {
-                @keyframes stats-item-animation-#{$i} {
-                  100% {
-                    transform: translate((math.random(21) + 9px) * get-sign(math.random(2)), (math.random(21) + 9px) * get-sign(math.random(2)));
-                  }
-                }
-              
-                .stats-item:nth-child(#{$i}) {
-                  animation: stats-item-animation-#{$i} 2.6s infinite;
-                  animation-delay: $i * 0.2s;
-                  animation-direction: alternate;
-                }
-              }
-            </code></pre>
-          </div>
-        </section>
-        <section data-background-color="rgb(19, 64, 116)">
-          <h2 style="color: #FFF;">3. Bonnes pratiques</h2>
-        </section>
-        <section>
-          <h3 class="header-title">Attention à la surimbrication</h3>
-
-          <div class="fragment">
-            <p><strong>Les risques : 💥</strong></p>
-            <ul>
-              <li>Fichier CSS lourd</li>
-              <li>Moins performant</li>
-              <li>Difficile à maintenir</li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Attention à la surimbrication</h3>
-          <img src="images/inception.jpg" style="width: 50%;" alt="">
-          <p>➡️ "Inception Rule" : pas plus de 3 niveaux d'imbrication</p>
-        </section>
-        <section>
-          <h3 class="header-title">mixins utiles</h3>
-
-          <div>
-            <ul>
-              <li>Gestion des fonts et tailles des textes</li>
-              <li>Centrage des éléments</li>
-              <li>Media queries</li>
-            </ul>
-            <p class="fragment" style="line-height: 1.5em;">
-              📍 <a href="https://gist.github.com/kaymorey/dc9a40a6b3b476a211f308e2deeebbc7">Mes fichiers de variables et mixins par défaut</a>
-              <br>
-              📰 <a href="https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2">10 awesome SASS mixins</a>
-            </p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">mixins utiles</h3>
-          <p>Librairie SASS : <a href="https://eduardoboucas.github.io/include-media">@include-media</a></p>
-
-          <pre><code data-trim class="scss">
-            $breakpoints: (phone: 320px, tablet: 768px, desktop: 1024px);
-
-            .block {
-              @include media(">phone", "<=tablet") {
-                width: 50%;
-              }
-            }
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Organisation des fichiers</h3>
-          <div>
-            <p><strong>Pattern 7-1</strong></p>
-            <pre><code data-trim>
-              scss/
-              |– abstracts/
-              |– base/
-              |– components/
-              |– layout/
-              |– pages/
-              |– themes/
-              |– vendors/
-              `– main.scss
-            </code></pre>
-            <p><a href="https://sass-guidelin.es/fr/#le-pattern-7-1">https://sass-guidelin.es/fr/#le-pattern-7-1</a></p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les composants : OOCSS</h3>
-          <div>
-            <p><strong>OOCSS : Oriented Object CSS</strong></p>
-            <figure>
-              <img src="images/media-object.png" alt="">
-              <figcaption style="font-size: 0.6em;">Le media object, introduit par Nicole Sullivan en 2010</figcaption>
-            </figure>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les composants : OOCSS</h3>
-          <div>
-            <p><strong>OOCSS introduit 2 grands principes :</strong></p>
-            <ol>
-              <li>
-                Séparation de la structure et de l’apparence<br>
-                <small>On utilise des classes, on ne cible pas des éléments HTML</small>
-              </li>
-              <li>
-                Séparation du conteneur et du contenu<br>
-                <small>On peut utiliser nos composants dans n'importe quel contexte</small>
-              </li>
-            </ol>
-          </div>
-
-          <div class="fragment">
-            <p><br><a href="https://getbootstrap.com/docs/4.4/components/">Bootstrap</a> repose par exemple sur OOCSS</p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Les composants : OOCSS</h3>
-          <div>
-            <h3>Comment on fait ?</h3>
-            <p>
-              En amont du project on <strong>repère les éléments communs ou répétés dans nos pages 👀</strong> pour en faire des composants
-            </p>
-          </div>
-          <br><br>
-          <div>
-            <h3>A quoi ça sert ?</h3>
-            <p>A gagner en productivité 🚀 et en maintenabilité 🛠</p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title" style="margin: 0;">Les composants : OOCSS</h3>
-          <div style="position: relative; width: 32%; margin: 0 auto;">
-            <img style="max-width: 100%; max-height: 100%; margin: 0;" src="images/avea-vacances1.jpg" alt="">
-            <img class="fragment" style="width: 100%; max-width: 100%; max-height: 100%; margin: 0; position: absolute; top: 0; left: 0;" src="images/avea-vacances2.jpg" alt="">
-          </div>
-          <aside class="notes">
-            https://www.avea-vacances.fr/offres?offer_search%5Breference%5D=&sort=
-          </aside>
-        </section>
-        <section>
-          <h3 class="header-title">Introduction à BEM</h3>
-
-          <div>
-            <p><strong>BEM : Block Element Modifier</strong></p>
-            <img src="images/bem.jpg" alt="">
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Introduction à BEM</h3>
-
-          <div>
-            <p><strong>BEM : Block Element Modifier</strong></p>
-            <img src="images/bem-element.jpg" alt="">
-            <p>.block__element--modifier</p>
-          </div>
-          <pre><code data-trim>
-            .search-form { }
-            .search-form__input { }
-            .search-form__btn { }
-            .search-form__btn--light { }
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Introduction à BEM</h3>
-
-          <div>
-            <p><strong>BEM : Block Element Modifier</strong></p>
-            <img src="images/portfolio-bem.png" alt="">
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Introduction à BEM</h3>
-
-          <div>
-            <p><strong>BEM : Block Element Modifier</strong></p>
-          </div>
-          <pre><code data-trim class="scss">
-            .search-form {
-              &__input {
-                width: 200px;
-              }
-
-              &__btn {
-                background: blue;
-
-                &--light {
-                    background: white;
-                }
-              }
-            }
-          </code></pre>
-        </section>
-        <section>
-          <h3 class="header-title">Mise en pratique... des bonnes pratiques !</h3>
-
-          <div>
-            <p><strong>OOCSS et BEM</strong></p>
-          </div>
-          <div class="d-flex" style="align-items: center;">
-            <div class="col-6">
-              <p><small>A partir de la maquette suivante (cliquer pour la voir en grand) :</small></p>
-              <a href="images/booki.png" target="_blank"><img src="images/booki.png" alt="" width="280"></a>
-            </div>
-            <div class="col-6">
-              <ul>
-                <li>Quels <strong>composants réutilisables</strong> pourriez-vous créer ?</li>
-                <li>Créez le HTML du bloc <strong>"hébergements à Marseille"</strong> en respectant la <strong>nomenclature BEM et OOCSS</strong> pour le nom des classes</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Mise en pratique... des bonnes pratiques !</h3>
-
-          <div>
-            <p><strong>OOCSS et BEM</strong></p>
-          </div>
-          <div class="d-flex" style="align-items: center;">
-            <div class="col-6">
-              <a href="images/booki.png" target="_blank"><img src="images/booki.png" alt="" width="280"></a>
-            </div>
-            <div class="col-6">
-              <ul>
-                <li>Composants : card, filter, stars, grey-section...</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Compiler son SASS... et plus !</h3>
-
-          <div class="fragment">
-            <p>
-              <strong>Avec les taskrunners</strong>
-              <br>
-              <small>Grunt, gulp, brunch...</small>
-            </p>
-          </div>
-          <br>
-          <div class="fragment">
-            <p>
-              <strong>Avec un module bundler</strong>
-              <br>
-              <small>Webpack, browserify...</small>
-            </p>
-          </div>
-        </section>
-        <section>
-          <h3 class="header-title">Liens utiles</h3>
-
-          <div>
-            <p>
-              <a href="https://sass-lang.com/">Site officiel de SASS</a>
-              <br>
-              <a href="https://sass-guidelin.es">Bonnes pratiques en SASS</a>
-              <br>
-              <br>
-              et pour aller plus loin :
-              <br>
-              <a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">BEM - explication de la syntaxe d'Harry Roberts</a>
-              <br>
-              <a href="https://www.nicoespeon.com/fr/2013/05/plongee-au-coeur-de-oocss/">Plongée au coeur de l'OOCSS</a>
-            </p>
-          </div>
-        </section>
-        <section data-background-color="rgb(19, 64, 116)">
-          <h2 style="padding-top: 20px; color: #FFF; line-height: 1.4em;">Merci pour votre attention 👩‍💻👨‍💻 !<br>À la prochaine 👋</h2>
-          <p style="color: #FFF; padding-top: 25px;">
-            Une question ?<br>
-          </p>
-          <ul>
-            <li>
-              🐦
-              <a href="https://twitter.com/kaymorey">Twitter @kaymorey</a>
-            </li>
-            <li>
-              💼
-              <a href="https://www.linkedin.com/in/katiamoreira/">Linkedin</a>
-            </li>
-            <li>
-              📧
-              <a href="mailto:bonjour@katiamoreira.fr">bonjour@katiamoreira.fr</a>
-            </li>
-            </li>
-          </ul>
-          <p style="padding-top: 50px;"><a href="https://cours-sass.vercel.app/">https://cours-sass.vercel.app/</a></p>
-        </section>
-        <!-- Montrer un exemple de fonction bullshit (genre x2)
-        puis introduire les fonctions SASS
-        puis montrer la fonction utile qui darken ou lighten une couleur
-        Je pourrais leur faire faire en exercice -->
-      </div>
-    </div>
-
-    <script src="dist/reveal.js"></script>
-    <script src="plugin/notes/notes.js"></script>
-    <script src="plugin/markdown/markdown.js"></script>
-    <script src="plugin/highlight/highlight.js"></script>
-    <script>
-      // More info about initialization & config:
-      // - https://revealjs.com/initialization/
-      // - https://revealjs.com/config/
-      Reveal.initialize({
-        hash: true,
-        center: false,
-
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-      });
-    </script>
-  </body>
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
 </html>
