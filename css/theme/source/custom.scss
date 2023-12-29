@@ -1,0 +1,113 @@
+
+/**
+ * Custom theme for reveal.js.
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+
+// Include theme-specific fonts
+@import url(./fonts/nunito/nunito.css);
+@import url(./fonts/poppins/poppins.css);
+
+$backgroundColor: #FFF;
+
+$mainColor: #134074;
+$headingColor: #134074;
+$secondaryColor: #da6259;
+
+$mainFont: 'Poppins', Helvetica, sans-serif;
+$mainFontSize: 37px;
+
+$headingFont: 'Poppins', Helvetica, sans-serif;
+$headingFontWeight: 700;
+$headingTextTransform: 'none';
+$heading1Size: 1.7em;
+$heading2Size: 1.4em;
+$heading3Size: 1em;
+$heading4Size: 0.7em;
+
+$linkColor: $secondaryColor;
+$linkColorHover: darken( $linkColor, 10% );
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Custom classes ------------------------------
+
+.header-title {
+  padding-bottom: 1em;
+  text-align: left;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 6px;
+    margin-top: 14px;
+    background-color: $linkColor;
+  }
+}
+
+// Reveal style ------------------------------
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  font-size: 0.75em;
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+  line-height: 1.3;
+
+  li {
+    margin-bottom: 0.5em;
+
+    &::marker {
+      color: $linkColor;
+    }
+  }
+
+  &.is-block {
+    display: block;
+  }
+}
+
+.reveal a {
+  text-decoration: underline;
+}
+
+.reveal .is-transparent {
+  opacity: 0.5;
+}
+
+.reveal .centered {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  &.full {
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+}
+
+// Text style ------------------------------
+.text-secondary {
+  color: $secondaryColor;
+}
+
+// Other ------------------------------
+.d-flex {
+  display: flex;
+}
+
+.col-6 {
+  width: 50%;
+}
