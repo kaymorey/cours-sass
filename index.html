@@ -24,16 +24,8 @@
                     </div>
                     <p style="padding-top: 20px;">
                       <small>Katia Moreira</small><br>
-                      <small>MMI 2 - xx/xx/2024</small><br>
+                      <small>MMI 2 - 31/01/2024</small><br>
                     </p>
-                </section>
-                <section class="full">
-                    <div class="centered">
-                        <div>
-                            <img src="images/download.gif" alt="" width="300"><br>
-                            👉&nbsp;<a href="#">Lien vers le cours en ligne</a>
-                        </div>
-                    </div>
                 </section>
                 <section>
                     <h3 class="header-title">Présentation</h3>
@@ -242,7 +234,7 @@
                                 <strong>Notre terrain de jeu :</strong><br>un template simple de portfolio en mode business card
                                 <br>
                                 <br>
-                                <a href="#">Télécharger le template</a>
+                                <a href="https://github.com/kaymorey/business-portfolio">Télécharger le template</a>
                             </p>
                         </div>
                         <div class="col-6">
@@ -381,7 +373,7 @@
 
                         <ol class="fragment">
                             <li>Créer un dossier styles</li>
-                            <li>Créer les fichiers suivants : <code>_variables.scss, _reset.scss, _layout.scss, _card.scss, _bubbles.scss</code></li>
+                            <li>Créer les fichiers suivants : <code>_variables.scss, _reset.scss, _fonts.scss, _layout.scss, _card.scss, _bubbles.scss</code></li>
                             <li>
                                 Les inclure dans le fichier principal styles.scss
                                 <pre><code data-trim class="scss">
@@ -400,6 +392,7 @@
                         <pre><code data-trim class="scss">
                             @import 'variables';
                             @import 'reset';
+                            @import 'fonts';
                             @import 'layout';
                             @import 'card';
                             @import 'bubbles';
@@ -441,9 +434,7 @@
                         <pre><code data-trim class="css">
                             .social {
                                 .link {
-                                    &:hover {
-                                        ...
-                                    }
+                                    ...
                                 }
                             }
                         </code></pre>
